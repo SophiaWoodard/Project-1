@@ -2,6 +2,7 @@
 title: "GamePlan"
 author: "Sophia Woodard"
 format: html
+embed-resources: true
 ---
 
 **Data: Geopolitical: Government Types**
@@ -21,8 +22,6 @@ The git repository for the geopolitical data set provides instructions for clean
 Additionally is sets values that appear to have no value or it is missing to NA. It also sets the electoral category variable to be numbered 0 to 3 to indicate elections, number of party elections, democratic and more. Finally it changed the variables that end and or contain "\_index", "year", "\_members to be integer values and variables that start with "*is" and "has*" to be logical.
 
 Below is the code used to accomplish this.
-
-
 
 ```{r}
 #| output: false
@@ -135,5 +134,10 @@ democracy_data <-
 
 **Addressing Research Questions:**
 
+Research Question: Does the inclusion of proportional voting increase the possibility of a free and fair election?
 
+![](images/clipboard-127190465.png){width="584"}
 
+Research Question: Does the likelihood of a country being democratic increase if their neighboring countries are also democratic?
+
+![](images/clipboard-1167216023.png)
