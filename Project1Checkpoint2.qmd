@@ -2,27 +2,45 @@
 title: "Project1Checkpoint2"
 author: "Sophia Woodard"
 format: html
-editor: visual
+editor: source
 embed-resources: true
+code-tools: true
+execute: 
+  echo: true
+  warning: false
+  message: false
 ---
 
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+## Data Summaries Unmodified
 
 ```{r}
-1 + 1
+#| output: false
+democracy_data <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-11-05/democracy_data.csv')
 ```
 
-You can add options to executable code like this
+
+**Research Questions Based on Democracy Data:**
+
+-   Does the inclusion of proportional voting increase the possibility of a free and fair election?
 
 ```{r}
-#| echo: false
-2 * 2
+library(dplyr)
+library(purrr)
+prop_vs_fair_map <- democracy_data |>
+  split(~has_proportional_voting) |>
+  map_dbl(~ mean(.x$has_free_and_fair_election, na.rm = TRUE))
+
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+
+```{r}
+library(tibble)
+
+prop_vs_fair <- prop_vs_fair_map |>
+  enframe(name = "proportional voting", value = "prop of free & fair")|> gt::gt()
+
+prop_vs_fair
+
+```
+
+
