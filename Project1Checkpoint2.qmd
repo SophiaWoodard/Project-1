@@ -40,7 +40,6 @@ prop_vs_fair <- prop_vs_fair_map |>
   enframe(name = "proportional voting", value = "prop of free & fair")|> gt::gt()
 
 prop_vs_fair
-
 ```
 
 
