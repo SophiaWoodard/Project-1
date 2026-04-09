@@ -5,6 +5,7 @@ format: html
 editor: source
 embed-resources: true
 code-tools: true
+code-fold: true
 execute: 
   echo: true
   warning: false
@@ -13,6 +14,7 @@ execute:
 
 ## Data Summaries Unmodified
 
+<<<<<<< HEAD
 ```{r}
 #| output: false
 democracy_data <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-11-05/democracy_data.csv')
@@ -43,3 +45,10 @@ prop_vs_fair
 ```
 
 
+=======
+Description
+
+## Data Summaries Modified
+
+Description
+>>>>>>> d642421b4e679fa19458d9db355068e4aad8964b

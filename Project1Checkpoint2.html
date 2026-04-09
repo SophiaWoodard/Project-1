@@ -2208,7 +2208,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Project1Checkpoint2</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Project1Checkpoint2</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -2233,42 +2233,52 @@ vertical-align: -.125em;
 
 <section id="data-summaries-unmodified" class="level2">
 <h2 class="anchored" data-anchor-id="data-summaries-unmodified">Data Summaries Unmodified</h2>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>democracy_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-11-05/democracy_data.csv&#39;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <p><strong>Research Questions Based on Democracy Data:</strong></p>
 <ul>
 <li>Does the inclusion of proportional voting increase the possibility of a free and fair election?</li>
 </ul>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>prop_vs_fair_map <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(<span class="sc">~</span>has_proportional_voting) <span class="sc">|&gt;</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(<span class="sc">~</span> <span class="fu">mean</span>(.x<span class="sc">$</span>has_free_and_fair_election, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>prop_vs_fair <span class="ot">&lt;-</span> prop_vs_fair_map <span class="sc">|&gt;</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>(<span class="at">name =</span> <span class="st">&quot;proportional voting&quot;</span>, <span class="at">value =</span> <span class="st">&quot;prop of free &amp; fair&quot;</span>)<span class="sc">|&gt;</span> gt<span class="sc">::</span><span class="fu">gt</span>()</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>prop_vs_fair</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
-<div id="vahkbikavy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vahkbikavy table {
+<div id="nedbnygiab" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#nedbnygiab table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#vahkbikavy thead, #vahkbikavy tbody, #vahkbikavy tfoot, #vahkbikavy tr, #vahkbikavy td, #vahkbikavy th {
+#nedbnygiab thead, #nedbnygiab tbody, #nedbnygiab tfoot, #nedbnygiab tr, #nedbnygiab td, #nedbnygiab th {
 border-style: none;
 }
-#vahkbikavy p {
+#nedbnygiab p {
 margin: 0;
 padding: 0;
 }
-#vahkbikavy .gt_table {
+#nedbnygiab .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -2293,11 +2303,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#vahkbikavy .gt_caption {
+#nedbnygiab .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#vahkbikavy .gt_title {
+#nedbnygiab .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -2308,7 +2318,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#vahkbikavy .gt_subtitle {
+#nedbnygiab .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -2319,7 +2329,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#vahkbikavy .gt_heading {
+#nedbnygiab .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -2330,12 +2340,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#vahkbikavy .gt_bottom_border {
+#nedbnygiab .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#vahkbikavy .gt_col_headings {
+#nedbnygiab .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -2349,7 +2359,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#vahkbikavy .gt_col_heading {
+#nedbnygiab .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2368,7 +2378,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#vahkbikavy .gt_column_spanner_outer {
+#nedbnygiab .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2379,13 +2389,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#vahkbikavy .gt_column_spanner_outer:first-child {
+#nedbnygiab .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#vahkbikavy .gt_column_spanner_outer:last-child {
+#nedbnygiab .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#vahkbikavy .gt_column_spanner {
+#nedbnygiab .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -2396,10 +2406,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#vahkbikavy .gt_spanner_row {
+#nedbnygiab .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#vahkbikavy .gt_group_heading {
+#nedbnygiab .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2424,7 +2434,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#vahkbikavy .gt_empty_group_heading {
+#nedbnygiab .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -2438,13 +2448,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#vahkbikavy .gt_from_md > :first-child {
+#nedbnygiab .gt_from_md > :first-child {
 margin-top: 0;
 }
-#vahkbikavy .gt_from_md > :last-child {
+#nedbnygiab .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#vahkbikavy .gt_row {
+#nedbnygiab .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2462,7 +2472,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#vahkbikavy .gt_stub {
+#nedbnygiab .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2474,7 +2484,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#vahkbikavy .gt_stub_row_group {
+#nedbnygiab .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2487,13 +2497,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#vahkbikavy .gt_row_group_first td {
+#nedbnygiab .gt_row_group_first td {
 border-top-width: 2px;
 }
-#vahkbikavy .gt_row_group_first th {
+#nedbnygiab .gt_row_group_first th {
 border-top-width: 2px;
 }
-#vahkbikavy .gt_summary_row {
+#nedbnygiab .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2502,14 +2512,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#vahkbikavy .gt_first_summary_row {
+#nedbnygiab .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#vahkbikavy .gt_first_summary_row.thick {
+#nedbnygiab .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#vahkbikavy .gt_last_summary_row {
+#nedbnygiab .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2518,7 +2528,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#vahkbikavy .gt_grand_summary_row {
+#nedbnygiab .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2527,7 +2537,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#vahkbikavy .gt_first_grand_summary_row {
+#nedbnygiab .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2536,7 +2546,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#vahkbikavy .gt_last_grand_summary_row_top {
+#nedbnygiab .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2545,10 +2555,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#vahkbikavy .gt_striped {
+#nedbnygiab .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#vahkbikavy .gt_table_body {
+#nedbnygiab .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -2556,7 +2566,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#vahkbikavy .gt_footnotes {
+#nedbnygiab .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -2569,7 +2579,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#vahkbikavy .gt_footnote {
+#nedbnygiab .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -2577,7 +2587,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#vahkbikavy .gt_sourcenotes {
+#nedbnygiab .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -2590,64 +2600,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#vahkbikavy .gt_sourcenote {
+#nedbnygiab .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#vahkbikavy .gt_left {
+#nedbnygiab .gt_left {
 text-align: left;
 }
-#vahkbikavy .gt_center {
+#nedbnygiab .gt_center {
 text-align: center;
 }
-#vahkbikavy .gt_right {
+#nedbnygiab .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#vahkbikavy .gt_font_normal {
+#nedbnygiab .gt_font_normal {
 font-weight: normal;
 }
-#vahkbikavy .gt_font_bold {
+#nedbnygiab .gt_font_bold {
 font-weight: bold;
 }
-#vahkbikavy .gt_font_italic {
+#nedbnygiab .gt_font_italic {
 font-style: italic;
 }
-#vahkbikavy .gt_super {
+#nedbnygiab .gt_super {
 font-size: 65%;
 }
-#vahkbikavy .gt_footnote_marks {
+#nedbnygiab .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#vahkbikavy .gt_asterisk {
+#nedbnygiab .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#vahkbikavy .gt_indent_1 {
+#nedbnygiab .gt_indent_1 {
 text-indent: 5px;
 }
-#vahkbikavy .gt_indent_2 {
+#nedbnygiab .gt_indent_2 {
 text-indent: 10px;
 }
-#vahkbikavy .gt_indent_3 {
+#nedbnygiab .gt_indent_3 {
 text-indent: 15px;
 }
-#vahkbikavy .gt_indent_4 {
+#nedbnygiab .gt_indent_4 {
 text-indent: 20px;
 }
-#vahkbikavy .gt_indent_5 {
+#nedbnygiab .gt_indent_5 {
 text-indent: 25px;
 }
-#vahkbikavy .katex-display {
+#nedbnygiab .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#vahkbikavy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#nedbnygiab div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -2674,6 +2684,11 @@ height: 0px !important;
 </div>
 </div>
 </div>
+<p>======= Description</p>
+</section>
+<section id="data-summaries-modified" class="level2">
+<h2 class="anchored" data-anchor-id="data-summaries-modified">Data Summaries Modified</h2>
+<p>Description &gt;&gt;&gt;&gt;&gt;&gt;&gt; d642421b4e679fa19458d9db355068e4aad8964b</p>
 <!-- -->
 
 </section>
@@ -3138,43 +3153,53 @@ height: 0px !important;
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> source</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="an">embed-resources:</span><span class="co"> true</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span><span class="co"> </span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Summaries Unmodified</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: false</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>democracy_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-11-05/democracy_data.csv&#39;</span>)</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>**Research Questions Based on Democracy Data:**</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="an">code-fold:</span><span class="co"> true</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span><span class="co"> </span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Summaries Unmodified</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: false</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>democracy_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-11-05/democracy_data.csv&#39;</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Does the inclusion of proportional voting increase the possibility of a free and fair election?</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>**Research Questions Based on Democracy Data:**</span>
 <span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>prop_vs_fair_map <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(<span class="sc">~</span>has_proportional_voting) <span class="sc">|&gt;</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(<span class="sc">~</span> <span class="fu">mean</span>(.x<span class="sc">$</span>has_free_and_fair_election, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Does the inclusion of proportional voting increase the possibility of a free and fair election?</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>prop_vs_fair_map <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(<span class="sc">~</span>has_proportional_voting) <span class="sc">|&gt;</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(<span class="sc">~</span> <span class="fu">mean</span>(.x<span class="sc">$</span>has_free_and_fair_election, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>prop_vs_fair <span class="ot">&lt;-</span> prop_vs_fair_map <span class="sc">|&gt;</span></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>(<span class="at">name =</span> <span class="st">&quot;proportional voting&quot;</span>, <span class="at">value =</span> <span class="st">&quot;prop of free &amp; fair&quot;</span>)<span class="sc">|&gt;</span> gt<span class="sc">::</span><span class="fu">gt</span>()</span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>prop_vs_fair</span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>prop_vs_fair <span class="ot">&lt;-</span> prop_vs_fair_map <span class="sc">|&gt;</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>(<span class="at">name =</span> <span class="st">&quot;proportional voting&quot;</span>, <span class="at">value =</span> <span class="st">&quot;prop of free &amp; fair&quot;</span>)<span class="sc">|&gt;</span> gt<span class="sc">::</span><span class="fu">gt</span>()</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>prop_vs_fair</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="fu">=======</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>Description</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Summaries Modified</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>Description</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;&gt;&gt;&gt;&gt;&gt;&gt; d642421b4e679fa19458d9db355068e4aad8964b</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
