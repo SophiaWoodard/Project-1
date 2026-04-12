@@ -8,7 +8,7 @@
 
 <meta name="author" content="Sophia Woodard">
 
-<title>Project1Checkpoint2</title>
+<title>Project 1- checkpoint 2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -2208,7 +2208,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Project1Checkpoint2</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Project 1- checkpoint 2</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -2231,54 +2231,67 @@ vertical-align: -.125em;
 </header>
 
 
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>democracy_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-11-05/democracy_data.csv&#39;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <section id="data-summaries-unmodified" class="level2">
 <h2 class="anchored" data-anchor-id="data-summaries-unmodified">Data Summaries Unmodified</h2>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>democracy_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-11-05/democracy_data.csv&#39;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
 <p><strong>Research Questions Based on Democracy Data:</strong></p>
+<ul>
+<li>Are presidential systems more likely to be democratic?</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>democracy_presid_voting <span class="ot">&lt;-</span> <span class="cf">function</span>(df) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(is_presidential) <span class="sc">|&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">prop_democracy =</span> <span class="fu">mean</span>(is_democracy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(prop_democracy))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">democracy_presid_voting</span>(democracy_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  is_presidential prop_democracy count
+  &lt;lgl&gt;                    &lt;dbl&gt; &lt;int&gt;
+1 NA                       0.901   133
+2 FALSE                    0.494  8156
+3 TRUE                     0.403  6479</code></pre>
+</div>
+</div>
 <ul>
 <li>Does the inclusion of proportional voting increase the possibility of a free and fair election?</li>
 </ul>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>prop_vs_fair_map <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(<span class="sc">~</span>has_proportional_voting) <span class="sc">|&gt;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(<span class="sc">~</span> <span class="fu">mean</span>(.x<span class="sc">$</span>has_free_and_fair_election, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>prop_vs_fair_map <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(<span class="sc">~</span>has_proportional_voting) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(<span class="sc">~</span> <span class="fu">mean</span>(.x<span class="sc">$</span>has_free_and_fair_election, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>prop_vs_fair <span class="ot">&lt;-</span> prop_vs_fair_map <span class="sc">|&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>(<span class="at">name =</span> <span class="st">&quot;proportional voting&quot;</span>, <span class="at">value =</span> <span class="st">&quot;prop of free &amp; fair&quot;</span>)<span class="sc">|&gt;</span> gt<span class="sc">::</span><span class="fu">gt</span>()</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>prop_vs_fair</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>prop_vs_fair <span class="ot">&lt;-</span> prop_vs_fair_map <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>(<span class="at">name =</span> <span class="st">&quot;proportional voting&quot;</span>, <span class="at">value =</span> <span class="st">&quot;prop of free &amp; fair&quot;</span>)<span class="sc">|&gt;</span> gt<span class="sc">::</span><span class="fu">gt</span>()</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>prop_vs_fair</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="ktkkfopdbw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ktkkfopdbw table {
+<div id="aagbyvribz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#aagbyvribz table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#ktkkfopdbw thead, #ktkkfopdbw tbody, #ktkkfopdbw tfoot, #ktkkfopdbw tr, #ktkkfopdbw td, #ktkkfopdbw th {
+#aagbyvribz thead, #aagbyvribz tbody, #aagbyvribz tfoot, #aagbyvribz tr, #aagbyvribz td, #aagbyvribz th {
 border-style: none;
 }
-#ktkkfopdbw p {
+#aagbyvribz p {
 margin: 0;
 padding: 0;
 }
-#ktkkfopdbw .gt_table {
+#aagbyvribz .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -2303,11 +2316,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#ktkkfopdbw .gt_caption {
+#aagbyvribz .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#ktkkfopdbw .gt_title {
+#aagbyvribz .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -2318,7 +2331,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#ktkkfopdbw .gt_subtitle {
+#aagbyvribz .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -2329,7 +2342,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#ktkkfopdbw .gt_heading {
+#aagbyvribz .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -2340,12 +2353,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#ktkkfopdbw .gt_bottom_border {
+#aagbyvribz .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ktkkfopdbw .gt_col_headings {
+#aagbyvribz .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -2359,7 +2372,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#ktkkfopdbw .gt_col_heading {
+#aagbyvribz .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2378,7 +2391,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#ktkkfopdbw .gt_column_spanner_outer {
+#aagbyvribz .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2389,13 +2402,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#ktkkfopdbw .gt_column_spanner_outer:first-child {
+#aagbyvribz .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#ktkkfopdbw .gt_column_spanner_outer:last-child {
+#aagbyvribz .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#ktkkfopdbw .gt_column_spanner {
+#aagbyvribz .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -2406,10 +2419,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#ktkkfopdbw .gt_spanner_row {
+#aagbyvribz .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#ktkkfopdbw .gt_group_heading {
+#aagbyvribz .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2434,7 +2447,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#ktkkfopdbw .gt_empty_group_heading {
+#aagbyvribz .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -2448,13 +2461,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#ktkkfopdbw .gt_from_md > :first-child {
+#aagbyvribz .gt_from_md > :first-child {
 margin-top: 0;
 }
-#ktkkfopdbw .gt_from_md > :last-child {
+#aagbyvribz .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#ktkkfopdbw .gt_row {
+#aagbyvribz .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2472,7 +2485,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#ktkkfopdbw .gt_stub {
+#aagbyvribz .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2484,7 +2497,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ktkkfopdbw .gt_stub_row_group {
+#aagbyvribz .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2497,13 +2510,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#ktkkfopdbw .gt_row_group_first td {
+#aagbyvribz .gt_row_group_first td {
 border-top-width: 2px;
 }
-#ktkkfopdbw .gt_row_group_first th {
+#aagbyvribz .gt_row_group_first th {
 border-top-width: 2px;
 }
-#ktkkfopdbw .gt_summary_row {
+#aagbyvribz .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2512,14 +2525,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ktkkfopdbw .gt_first_summary_row {
+#aagbyvribz .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#ktkkfopdbw .gt_first_summary_row.thick {
+#aagbyvribz .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#ktkkfopdbw .gt_last_summary_row {
+#aagbyvribz .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2528,7 +2541,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ktkkfopdbw .gt_grand_summary_row {
+#aagbyvribz .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2537,7 +2550,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ktkkfopdbw .gt_first_grand_summary_row {
+#aagbyvribz .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2546,7 +2559,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#ktkkfopdbw .gt_last_grand_summary_row_top {
+#aagbyvribz .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2555,10 +2568,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#ktkkfopdbw .gt_striped {
+#aagbyvribz .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#ktkkfopdbw .gt_table_body {
+#aagbyvribz .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -2566,7 +2579,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ktkkfopdbw .gt_footnotes {
+#aagbyvribz .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -2579,7 +2592,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#ktkkfopdbw .gt_footnote {
+#aagbyvribz .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -2587,7 +2600,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ktkkfopdbw .gt_sourcenotes {
+#aagbyvribz .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -2600,64 +2613,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#ktkkfopdbw .gt_sourcenote {
+#aagbyvribz .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ktkkfopdbw .gt_left {
+#aagbyvribz .gt_left {
 text-align: left;
 }
-#ktkkfopdbw .gt_center {
+#aagbyvribz .gt_center {
 text-align: center;
 }
-#ktkkfopdbw .gt_right {
+#aagbyvribz .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#ktkkfopdbw .gt_font_normal {
+#aagbyvribz .gt_font_normal {
 font-weight: normal;
 }
-#ktkkfopdbw .gt_font_bold {
+#aagbyvribz .gt_font_bold {
 font-weight: bold;
 }
-#ktkkfopdbw .gt_font_italic {
+#aagbyvribz .gt_font_italic {
 font-style: italic;
 }
-#ktkkfopdbw .gt_super {
+#aagbyvribz .gt_super {
 font-size: 65%;
 }
-#ktkkfopdbw .gt_footnote_marks {
+#aagbyvribz .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#ktkkfopdbw .gt_asterisk {
+#aagbyvribz .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#ktkkfopdbw .gt_indent_1 {
+#aagbyvribz .gt_indent_1 {
 text-indent: 5px;
 }
-#ktkkfopdbw .gt_indent_2 {
+#aagbyvribz .gt_indent_2 {
 text-indent: 10px;
 }
-#ktkkfopdbw .gt_indent_3 {
+#aagbyvribz .gt_indent_3 {
 text-indent: 15px;
 }
-#ktkkfopdbw .gt_indent_4 {
+#aagbyvribz .gt_indent_4 {
 text-indent: 20px;
 }
-#ktkkfopdbw .gt_indent_5 {
+#aagbyvribz .gt_indent_5 {
 text-indent: 25px;
 }
-#ktkkfopdbw .katex-display {
+#aagbyvribz .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#ktkkfopdbw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#aagbyvribz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -2684,11 +2697,1710 @@ height: 0px !important;
 </div>
 </div>
 </div>
-<p>======= Description</p>
 </section>
 <section id="data-summaries-modified" class="level2">
 <h2 class="anchored" data-anchor-id="data-summaries-modified">Data Summaries Modified</h2>
-<p>Description &gt;&gt;&gt;&gt;&gt;&gt;&gt; d642421b4e679fa19458d9db355068e4aad8964b</p>
+<ul>
+<li>How many female president or monarch leaders have led a country over time?</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#custom function w/ new column</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>summarize_female_leadership <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>   data <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">female_leader =</span> is_female_monarch <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">|</span> is_female_president <span class="sc">==</span> <span class="cn">TRUE</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">number_of_countries_per_year =</span> <span class="fu">n</span>(),</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">female_leaders =</span> <span class="fu">sum</span>(female_leader, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">proportion_female =</span> female_leaders <span class="sc">/</span> number_of_countries_per_year</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#using the function + gt table</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize_female_leadership</span>(democracy_data) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Female Leadership Over Time&quot;</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Proportion of Female Leaders by Year&quot;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">number_of_countries_per_year =</span> <span class="st">&quot;Total Countries In A Year&quot;</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">female_leaders =</span> <span class="st">&quot;Female Leaders&quot;</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">proportion_female =</span> <span class="st">&quot;Proportion Female&quot;</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> proportion_female,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">2</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="jgloaubtgg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jgloaubtgg table {
+font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+#jgloaubtgg thead, #jgloaubtgg tbody, #jgloaubtgg tfoot, #jgloaubtgg tr, #jgloaubtgg td, #jgloaubtgg th {
+border-style: none;
+}
+#jgloaubtgg p {
+margin: 0;
+padding: 0;
+}
+#jgloaubtgg .gt_table {
+display: table;
+border-collapse: collapse;
+line-height: normal;
+margin-left: auto;
+margin-right: auto;
+color: #333333;
+font-size: 16px;
+font-weight: normal;
+font-style: normal;
+background-color: #FFFFFF;
+width: auto;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #A8A8A8;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #A8A8A8;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+}
+#jgloaubtgg .gt_caption {
+padding-top: 4px;
+padding-bottom: 4px;
+}
+#jgloaubtgg .gt_title {
+color: #333333;
+font-size: 125%;
+font-weight: initial;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-color: #FFFFFF;
+border-bottom-width: 0;
+}
+#jgloaubtgg .gt_subtitle {
+color: #333333;
+font-size: 85%;
+font-weight: initial;
+padding-top: 3px;
+padding-bottom: 5px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-color: #FFFFFF;
+border-top-width: 0;
+}
+#jgloaubtgg .gt_heading {
+background-color: #FFFFFF;
+text-align: center;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#jgloaubtgg .gt_bottom_border {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#jgloaubtgg .gt_col_headings {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#jgloaubtgg .gt_col_heading {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 6px;
+padding-left: 5px;
+padding-right: 5px;
+overflow-x: hidden;
+}
+#jgloaubtgg .gt_column_spanner_outer {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+padding-top: 0;
+padding-bottom: 0;
+padding-left: 4px;
+padding-right: 4px;
+}
+#jgloaubtgg .gt_column_spanner_outer:first-child {
+padding-left: 0;
+}
+#jgloaubtgg .gt_column_spanner_outer:last-child {
+padding-right: 0;
+}
+#jgloaubtgg .gt_column_spanner {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 5px;
+overflow-x: hidden;
+display: inline-block;
+width: 100%;
+}
+#jgloaubtgg .gt_spanner_row {
+border-bottom-style: hidden;
+}
+#jgloaubtgg .gt_group_heading {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+text-align: left;
+}
+#jgloaubtgg .gt_empty_group_heading {
+padding: 0.5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: middle;
+}
+#jgloaubtgg .gt_from_md > :first-child {
+margin-top: 0;
+}
+#jgloaubtgg .gt_from_md > :last-child {
+margin-bottom: 0;
+}
+#jgloaubtgg .gt_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+margin: 10px;
+border-top-style: solid;
+border-top-width: 1px;
+border-top-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+overflow-x: hidden;
+}
+#jgloaubtgg .gt_stub {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+}
+#jgloaubtgg .gt_stub_row_group {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+vertical-align: top;
+}
+#jgloaubtgg .gt_row_group_first td {
+border-top-width: 2px;
+}
+#jgloaubtgg .gt_row_group_first th {
+border-top-width: 2px;
+}
+#jgloaubtgg .gt_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#jgloaubtgg .gt_first_summary_row {
+border-top-style: solid;
+border-top-color: #D3D3D3;
+}
+#jgloaubtgg .gt_first_summary_row.thick {
+border-top-width: 2px;
+}
+#jgloaubtgg .gt_last_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#jgloaubtgg .gt_grand_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#jgloaubtgg .gt_first_grand_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-style: double;
+border-top-width: 6px;
+border-top-color: #D3D3D3;
+}
+#jgloaubtgg .gt_last_grand_summary_row_top {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: double;
+border-bottom-width: 6px;
+border-bottom-color: #D3D3D3;
+}
+#jgloaubtgg .gt_striped {
+background-color: rgba(128, 128, 128, 0.05);
+}
+#jgloaubtgg .gt_table_body {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#jgloaubtgg .gt_footnotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#jgloaubtgg .gt_footnote {
+margin: 0px;
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#jgloaubtgg .gt_sourcenotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#jgloaubtgg .gt_sourcenote {
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#jgloaubtgg .gt_left {
+text-align: left;
+}
+#jgloaubtgg .gt_center {
+text-align: center;
+}
+#jgloaubtgg .gt_right {
+text-align: right;
+font-variant-numeric: tabular-nums;
+}
+#jgloaubtgg .gt_font_normal {
+font-weight: normal;
+}
+#jgloaubtgg .gt_font_bold {
+font-weight: bold;
+}
+#jgloaubtgg .gt_font_italic {
+font-style: italic;
+}
+#jgloaubtgg .gt_super {
+font-size: 65%;
+}
+#jgloaubtgg .gt_footnote_marks {
+font-size: 75%;
+vertical-align: 0.4em;
+position: initial;
+}
+#jgloaubtgg .gt_asterisk {
+font-size: 100%;
+vertical-align: 0;
+}
+#jgloaubtgg .gt_indent_1 {
+text-indent: 5px;
+}
+#jgloaubtgg .gt_indent_2 {
+text-indent: 10px;
+}
+#jgloaubtgg .gt_indent_3 {
+text-indent: 15px;
+}
+#jgloaubtgg .gt_indent_4 {
+text-indent: 20px;
+}
+#jgloaubtgg .gt_indent_5 {
+text-indent: 25px;
+}
+#jgloaubtgg .katex-display {
+display: inline-flex !important;
+margin-bottom: 0.75em !important;
+}
+#jgloaubtgg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="4" class="gt_heading gt_title gt_font_normal">Female Leadership Over Time</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Proportion of Female Leaders by Year</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="year" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Year</th>
+<th id="number_of_countries_per_year" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Total Countries In A Year</th>
+<th id="female_leaders" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Female Leaders</th>
+<th id="proportion_female" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Proportion Female</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1950</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">7</td>
+<td class="gt_row gt_right" headers="proportion_female">3.37%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1951</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">7</td>
+<td class="gt_row gt_right" headers="proportion_female">3.37%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1952</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">16</td>
+<td class="gt_row gt_right" headers="proportion_female">7.69%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1953</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">16</td>
+<td class="gt_row gt_right" headers="proportion_female">7.69%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1954</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">16</td>
+<td class="gt_row gt_right" headers="proportion_female">7.69%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1955</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">16</td>
+<td class="gt_row gt_right" headers="proportion_female">7.69%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1956</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">16</td>
+<td class="gt_row gt_right" headers="proportion_female">7.69%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1957</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">16</td>
+<td class="gt_row gt_right" headers="proportion_female">7.69%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1958</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">16</td>
+<td class="gt_row gt_right" headers="proportion_female">7.69%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1959</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">16</td>
+<td class="gt_row gt_right" headers="proportion_female">7.69%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1960</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">15</td>
+<td class="gt_row gt_right" headers="proportion_female">7.21%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1961</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">15</td>
+<td class="gt_row gt_right" headers="proportion_female">7.21%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1962</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">15</td>
+<td class="gt_row gt_right" headers="proportion_female">7.21%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1963</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">15</td>
+<td class="gt_row gt_right" headers="proportion_female">7.21%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1964</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">15</td>
+<td class="gt_row gt_right" headers="proportion_female">7.21%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1965</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">14</td>
+<td class="gt_row gt_right" headers="proportion_female">6.73%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1966</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">13</td>
+<td class="gt_row gt_right" headers="proportion_female">6.25%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1967</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">13</td>
+<td class="gt_row gt_right" headers="proportion_female">6.25%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1968</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">13</td>
+<td class="gt_row gt_right" headers="proportion_female">6.25%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1969</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">13</td>
+<td class="gt_row gt_right" headers="proportion_female">6.25%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1970</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">13</td>
+<td class="gt_row gt_right" headers="proportion_female">6.25%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1971</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">13</td>
+<td class="gt_row gt_right" headers="proportion_female">6.25%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1972</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">14</td>
+<td class="gt_row gt_right" headers="proportion_female">6.73%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1973</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">14</td>
+<td class="gt_row gt_right" headers="proportion_female">6.73%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1974</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">14</td>
+<td class="gt_row gt_right" headers="proportion_female">6.73%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1975</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">15</td>
+<td class="gt_row gt_right" headers="proportion_female">7.21%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1976</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">14</td>
+<td class="gt_row gt_right" headers="proportion_female">6.73%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1977</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">14</td>
+<td class="gt_row gt_right" headers="proportion_female">6.73%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1978</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">14</td>
+<td class="gt_row gt_right" headers="proportion_female">6.73%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1979</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">14</td>
+<td class="gt_row gt_right" headers="proportion_female">6.73%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1980</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">15</td>
+<td class="gt_row gt_right" headers="proportion_female">7.21%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1981</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">15</td>
+<td class="gt_row gt_right" headers="proportion_female">7.21%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1982</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">16</td>
+<td class="gt_row gt_right" headers="proportion_female">7.69%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1983</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">16</td>
+<td class="gt_row gt_right" headers="proportion_female">7.69%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1984</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">16</td>
+<td class="gt_row gt_right" headers="proportion_female">7.69%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1985</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">16</td>
+<td class="gt_row gt_right" headers="proportion_female">7.69%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1986</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">17</td>
+<td class="gt_row gt_right" headers="proportion_female">8.17%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1987</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">16</td>
+<td class="gt_row gt_right" headers="proportion_female">7.69%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1988</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">16</td>
+<td class="gt_row gt_right" headers="proportion_female">7.69%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1989</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">16</td>
+<td class="gt_row gt_right" headers="proportion_female">7.69%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1990</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">18</td>
+<td class="gt_row gt_right" headers="proportion_female">8.65%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1991</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">19</td>
+<td class="gt_row gt_right" headers="proportion_female">9.13%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1992</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">18</td>
+<td class="gt_row gt_right" headers="proportion_female">8.65%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1993</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">18</td>
+<td class="gt_row gt_right" headers="proportion_female">8.65%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1994</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">18</td>
+<td class="gt_row gt_right" headers="proportion_female">8.65%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1995</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">19</td>
+<td class="gt_row gt_right" headers="proportion_female">9.13%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1996</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">17</td>
+<td class="gt_row gt_right" headers="proportion_female">8.17%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1997</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">17</td>
+<td class="gt_row gt_right" headers="proportion_female">8.17%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1998</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">15</td>
+<td class="gt_row gt_right" headers="proportion_female">7.21%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1999</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">15</td>
+<td class="gt_row gt_right" headers="proportion_female">7.21%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2000</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">18</td>
+<td class="gt_row gt_right" headers="proportion_female">8.65%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2001</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">19</td>
+<td class="gt_row gt_right" headers="proportion_female">9.13%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2002</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">20</td>
+<td class="gt_row gt_right" headers="proportion_female">9.62%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2003</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">20</td>
+<td class="gt_row gt_right" headers="proportion_female">9.62%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2004</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">20</td>
+<td class="gt_row gt_right" headers="proportion_female">9.62%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2005</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">18</td>
+<td class="gt_row gt_right" headers="proportion_female">8.65%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2006</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">19</td>
+<td class="gt_row gt_right" headers="proportion_female">9.13%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2007</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">19</td>
+<td class="gt_row gt_right" headers="proportion_female">9.13%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2008</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">20</td>
+<td class="gt_row gt_right" headers="proportion_female">9.62%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2009</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">20</td>
+<td class="gt_row gt_right" headers="proportion_female">9.62%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2010</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">22</td>
+<td class="gt_row gt_right" headers="proportion_female">10.58%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2011</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">23</td>
+<td class="gt_row gt_right" headers="proportion_female">11.06%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2012</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">21</td>
+<td class="gt_row gt_right" headers="proportion_female">10.10%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2013</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">17</td>
+<td class="gt_row gt_right" headers="proportion_female">8.17%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2014</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">17</td>
+<td class="gt_row gt_right" headers="proportion_female">8.17%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2015</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">19</td>
+<td class="gt_row gt_right" headers="proportion_female">9.13%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2016</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">20</td>
+<td class="gt_row gt_right" headers="proportion_female">9.62%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2017</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">20</td>
+<td class="gt_row gt_right" headers="proportion_female">9.62%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2018</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">20</td>
+<td class="gt_row gt_right" headers="proportion_female">9.62%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2019</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">22</td>
+<td class="gt_row gt_right" headers="proportion_female">10.58%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2020</td>
+<td class="gt_row gt_right" headers="number_of_countries_per_year">208</td>
+<td class="gt_row gt_right" headers="female_leaders">21</td>
+<td class="gt_row gt_right" headers="proportion_female">10.10%</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<ul>
+<li>How many colonies are present over time?</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>democracy_data <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">colony_status =</span> <span class="fu">if_else</span>(is_colony <span class="sc">==</span> <span class="cn">TRUE</span>, <span class="st">&quot;Colony&quot;</span>, <span class="st">&quot;Not Colony&quot;</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this function filters the number of colunies in a specific inputted year</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>num_colonies <span class="ot">&lt;-</span> <span class="cf">function</span>(y) {</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> y, colony_status <span class="sc">==</span> <span class="st">&quot;Colony&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nrow</span>()</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#using the above functions, we are able to map the variable number_of_colonies for each year</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>colony_summary <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">number_of_colonies =</span> <span class="fu">map_int</span>(year, num_colonies),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">proportion_of_colonies =</span> number_of_colonies <span class="sc">/</span> <span class="dv">208</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#gt table here</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>colony_summary <span class="sc">|&gt;</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Chnage In Number of Colonies by Year&quot;</span>,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;208 Countries In Our Dataset&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">number_of_colonies =</span> <span class="st">&quot;Number of Colonies&quot;</span>,</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">proportion_of_colonies =</span> <span class="st">&quot;Proportion of Countries That Are Colonies&quot;</span>,</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> proportion_of_colonies,</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">2</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="xtzlytkhxa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xtzlytkhxa table {
+font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+#xtzlytkhxa thead, #xtzlytkhxa tbody, #xtzlytkhxa tfoot, #xtzlytkhxa tr, #xtzlytkhxa td, #xtzlytkhxa th {
+border-style: none;
+}
+#xtzlytkhxa p {
+margin: 0;
+padding: 0;
+}
+#xtzlytkhxa .gt_table {
+display: table;
+border-collapse: collapse;
+line-height: normal;
+margin-left: auto;
+margin-right: auto;
+color: #333333;
+font-size: 16px;
+font-weight: normal;
+font-style: normal;
+background-color: #FFFFFF;
+width: auto;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #A8A8A8;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #A8A8A8;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+}
+#xtzlytkhxa .gt_caption {
+padding-top: 4px;
+padding-bottom: 4px;
+}
+#xtzlytkhxa .gt_title {
+color: #333333;
+font-size: 125%;
+font-weight: initial;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-color: #FFFFFF;
+border-bottom-width: 0;
+}
+#xtzlytkhxa .gt_subtitle {
+color: #333333;
+font-size: 85%;
+font-weight: initial;
+padding-top: 3px;
+padding-bottom: 5px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-color: #FFFFFF;
+border-top-width: 0;
+}
+#xtzlytkhxa .gt_heading {
+background-color: #FFFFFF;
+text-align: center;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#xtzlytkhxa .gt_bottom_border {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#xtzlytkhxa .gt_col_headings {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#xtzlytkhxa .gt_col_heading {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 6px;
+padding-left: 5px;
+padding-right: 5px;
+overflow-x: hidden;
+}
+#xtzlytkhxa .gt_column_spanner_outer {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+padding-top: 0;
+padding-bottom: 0;
+padding-left: 4px;
+padding-right: 4px;
+}
+#xtzlytkhxa .gt_column_spanner_outer:first-child {
+padding-left: 0;
+}
+#xtzlytkhxa .gt_column_spanner_outer:last-child {
+padding-right: 0;
+}
+#xtzlytkhxa .gt_column_spanner {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 5px;
+overflow-x: hidden;
+display: inline-block;
+width: 100%;
+}
+#xtzlytkhxa .gt_spanner_row {
+border-bottom-style: hidden;
+}
+#xtzlytkhxa .gt_group_heading {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+text-align: left;
+}
+#xtzlytkhxa .gt_empty_group_heading {
+padding: 0.5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: middle;
+}
+#xtzlytkhxa .gt_from_md > :first-child {
+margin-top: 0;
+}
+#xtzlytkhxa .gt_from_md > :last-child {
+margin-bottom: 0;
+}
+#xtzlytkhxa .gt_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+margin: 10px;
+border-top-style: solid;
+border-top-width: 1px;
+border-top-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+overflow-x: hidden;
+}
+#xtzlytkhxa .gt_stub {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+}
+#xtzlytkhxa .gt_stub_row_group {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+vertical-align: top;
+}
+#xtzlytkhxa .gt_row_group_first td {
+border-top-width: 2px;
+}
+#xtzlytkhxa .gt_row_group_first th {
+border-top-width: 2px;
+}
+#xtzlytkhxa .gt_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#xtzlytkhxa .gt_first_summary_row {
+border-top-style: solid;
+border-top-color: #D3D3D3;
+}
+#xtzlytkhxa .gt_first_summary_row.thick {
+border-top-width: 2px;
+}
+#xtzlytkhxa .gt_last_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#xtzlytkhxa .gt_grand_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#xtzlytkhxa .gt_first_grand_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-style: double;
+border-top-width: 6px;
+border-top-color: #D3D3D3;
+}
+#xtzlytkhxa .gt_last_grand_summary_row_top {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: double;
+border-bottom-width: 6px;
+border-bottom-color: #D3D3D3;
+}
+#xtzlytkhxa .gt_striped {
+background-color: rgba(128, 128, 128, 0.05);
+}
+#xtzlytkhxa .gt_table_body {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#xtzlytkhxa .gt_footnotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#xtzlytkhxa .gt_footnote {
+margin: 0px;
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#xtzlytkhxa .gt_sourcenotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#xtzlytkhxa .gt_sourcenote {
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#xtzlytkhxa .gt_left {
+text-align: left;
+}
+#xtzlytkhxa .gt_center {
+text-align: center;
+}
+#xtzlytkhxa .gt_right {
+text-align: right;
+font-variant-numeric: tabular-nums;
+}
+#xtzlytkhxa .gt_font_normal {
+font-weight: normal;
+}
+#xtzlytkhxa .gt_font_bold {
+font-weight: bold;
+}
+#xtzlytkhxa .gt_font_italic {
+font-style: italic;
+}
+#xtzlytkhxa .gt_super {
+font-size: 65%;
+}
+#xtzlytkhxa .gt_footnote_marks {
+font-size: 75%;
+vertical-align: 0.4em;
+position: initial;
+}
+#xtzlytkhxa .gt_asterisk {
+font-size: 100%;
+vertical-align: 0;
+}
+#xtzlytkhxa .gt_indent_1 {
+text-indent: 5px;
+}
+#xtzlytkhxa .gt_indent_2 {
+text-indent: 10px;
+}
+#xtzlytkhxa .gt_indent_3 {
+text-indent: 15px;
+}
+#xtzlytkhxa .gt_indent_4 {
+text-indent: 20px;
+}
+#xtzlytkhxa .gt_indent_5 {
+text-indent: 25px;
+}
+#xtzlytkhxa .katex-display {
+display: inline-flex !important;
+margin-bottom: 0.75em !important;
+}
+#xtzlytkhxa div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="3" class="gt_heading gt_title gt_font_normal">Chnage In Number of Colonies by Year</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">208 Countries In Our Dataset</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="year" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Year</th>
+<th id="number_of_colonies" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Number of Colonies</th>
+<th id="proportion_of_colonies" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Proportion of Countries That Are Colonies</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1950</td>
+<td class="gt_row gt_right" headers="number_of_colonies">97</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">46.63%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1951</td>
+<td class="gt_row gt_right" headers="number_of_colonies">97</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">46.63%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1952</td>
+<td class="gt_row gt_right" headers="number_of_colonies">96</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">46.15%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1953</td>
+<td class="gt_row gt_right" headers="number_of_colonies">96</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">46.15%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1954</td>
+<td class="gt_row gt_right" headers="number_of_colonies">96</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">46.15%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1955</td>
+<td class="gt_row gt_right" headers="number_of_colonies">96</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">46.15%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1956</td>
+<td class="gt_row gt_right" headers="number_of_colonies">93</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">44.71%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1957</td>
+<td class="gt_row gt_right" headers="number_of_colonies">92</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">44.23%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1958</td>
+<td class="gt_row gt_right" headers="number_of_colonies">91</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">43.75%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1959</td>
+<td class="gt_row gt_right" headers="number_of_colonies">90</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">43.27%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1960</td>
+<td class="gt_row gt_right" headers="number_of_colonies">83</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">39.90%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1961</td>
+<td class="gt_row gt_right" headers="number_of_colonies">71</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">34.13%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1962</td>
+<td class="gt_row gt_right" headers="number_of_colonies">69</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">33.17%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1963</td>
+<td class="gt_row gt_right" headers="number_of_colonies">63</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">30.29%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1964</td>
+<td class="gt_row gt_right" headers="number_of_colonies">61</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">29.33%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1965</td>
+<td class="gt_row gt_right" headers="number_of_colonies">56</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">26.92%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1966</td>
+<td class="gt_row gt_right" headers="number_of_colonies">54</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">25.96%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1967</td>
+<td class="gt_row gt_right" headers="number_of_colonies">51</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">24.52%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1968</td>
+<td class="gt_row gt_right" headers="number_of_colonies">49</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">23.56%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1969</td>
+<td class="gt_row gt_right" headers="number_of_colonies">47</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">22.60%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1970</td>
+<td class="gt_row gt_right" headers="number_of_colonies">46</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">22.12%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1971</td>
+<td class="gt_row gt_right" headers="number_of_colonies">45</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">21.63%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1972</td>
+<td class="gt_row gt_right" headers="number_of_colonies">43</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">20.67%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1973</td>
+<td class="gt_row gt_right" headers="number_of_colonies">43</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">20.67%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1974</td>
+<td class="gt_row gt_right" headers="number_of_colonies">40</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">19.23%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1975</td>
+<td class="gt_row gt_right" headers="number_of_colonies">39</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">18.75%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1976</td>
+<td class="gt_row gt_right" headers="number_of_colonies">31</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">14.90%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1977</td>
+<td class="gt_row gt_right" headers="number_of_colonies">30</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">14.42%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1978</td>
+<td class="gt_row gt_right" headers="number_of_colonies">30</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">14.42%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1979</td>
+<td class="gt_row gt_right" headers="number_of_colonies">26</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">12.50%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1980</td>
+<td class="gt_row gt_right" headers="number_of_colonies">23</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">11.06%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1981</td>
+<td class="gt_row gt_right" headers="number_of_colonies">22</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">10.58%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1982</td>
+<td class="gt_row gt_right" headers="number_of_colonies">20</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">9.62%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1983</td>
+<td class="gt_row gt_right" headers="number_of_colonies">20</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">9.62%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1984</td>
+<td class="gt_row gt_right" headers="number_of_colonies">19</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">9.13%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1985</td>
+<td class="gt_row gt_right" headers="number_of_colonies">19</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">9.13%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1986</td>
+<td class="gt_row gt_right" headers="number_of_colonies">19</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">9.13%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1987</td>
+<td class="gt_row gt_right" headers="number_of_colonies">17</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">8.17%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1988</td>
+<td class="gt_row gt_right" headers="number_of_colonies">17</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">8.17%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1989</td>
+<td class="gt_row gt_right" headers="number_of_colonies">17</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">8.17%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1990</td>
+<td class="gt_row gt_right" headers="number_of_colonies">16</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">7.69%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1991</td>
+<td class="gt_row gt_right" headers="number_of_colonies">16</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">7.69%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1992</td>
+<td class="gt_row gt_right" headers="number_of_colonies">16</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">7.69%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1993</td>
+<td class="gt_row gt_right" headers="number_of_colonies">16</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">7.69%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1994</td>
+<td class="gt_row gt_right" headers="number_of_colonies">16</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">7.69%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1995</td>
+<td class="gt_row gt_right" headers="number_of_colonies">15</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">7.21%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1996</td>
+<td class="gt_row gt_right" headers="number_of_colonies">15</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">7.21%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1997</td>
+<td class="gt_row gt_right" headers="number_of_colonies">15</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">7.21%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">1998</td>
+<td class="gt_row gt_right" headers="number_of_colonies">14</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.73%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">1999</td>
+<td class="gt_row gt_right" headers="number_of_colonies">14</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.73%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2000</td>
+<td class="gt_row gt_right" headers="number_of_colonies">13</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.25%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2001</td>
+<td class="gt_row gt_right" headers="number_of_colonies">13</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.25%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2002</td>
+<td class="gt_row gt_right" headers="number_of_colonies">13</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.25%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2003</td>
+<td class="gt_row gt_right" headers="number_of_colonies">13</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.25%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2004</td>
+<td class="gt_row gt_right" headers="number_of_colonies">13</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.25%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2005</td>
+<td class="gt_row gt_right" headers="number_of_colonies">13</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.25%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2006</td>
+<td class="gt_row gt_right" headers="number_of_colonies">13</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.25%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2007</td>
+<td class="gt_row gt_right" headers="number_of_colonies">13</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.25%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2008</td>
+<td class="gt_row gt_right" headers="number_of_colonies">13</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.25%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2009</td>
+<td class="gt_row gt_right" headers="number_of_colonies">13</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.25%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2010</td>
+<td class="gt_row gt_right" headers="number_of_colonies">13</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.25%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2011</td>
+<td class="gt_row gt_right" headers="number_of_colonies">13</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.25%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2012</td>
+<td class="gt_row gt_right" headers="number_of_colonies">13</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.25%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2013</td>
+<td class="gt_row gt_right" headers="number_of_colonies">13</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.25%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2014</td>
+<td class="gt_row gt_right" headers="number_of_colonies">13</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.25%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2015</td>
+<td class="gt_row gt_right" headers="number_of_colonies">13</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.25%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2016</td>
+<td class="gt_row gt_right" headers="number_of_colonies">13</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.25%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2017</td>
+<td class="gt_row gt_right" headers="number_of_colonies">13</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.25%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2018</td>
+<td class="gt_row gt_right" headers="number_of_colonies">13</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.25%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2019</td>
+<td class="gt_row gt_right" headers="number_of_colonies">13</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.25%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2020</td>
+<td class="gt_row gt_right" headers="number_of_colonies">13</td>
+<td class="gt_row gt_right" headers="proportion_of_colonies">6.25%</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 <!-- -->
 
 </section>
@@ -3146,60 +4858,158 @@ height: 0px !important;
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Project1Checkpoint2&quot;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> &quot;Sophia Woodard&quot;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> source</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="an">embed-resources:</span><span class="co"> true</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="an">code-fold:</span><span class="co"> true</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span><span class="co"> </span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Summaries Unmodified</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: false</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>democracy_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-11-05/democracy_data.csv&#39;</span>)</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>**Research Questions Based on Democracy Data:**</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Does the inclusion of proportional voting increase the possibility of a free and fair election?</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>prop_vs_fair_map <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(<span class="sc">~</span>has_proportional_voting) <span class="sc">|&gt;</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(<span class="sc">~</span> <span class="fu">mean</span>(.x<span class="sc">$</span>has_free_and_fair_election, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>prop_vs_fair <span class="ot">&lt;-</span> prop_vs_fair_map <span class="sc">|&gt;</span></span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>(<span class="at">name =</span> <span class="st">&quot;proportional voting&quot;</span>, <span class="at">value =</span> <span class="st">&quot;prop of free &amp; fair&quot;</span>)<span class="sc">|&gt;</span> gt<span class="sc">::</span><span class="fu">gt</span>()</span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>prop_vs_fair</span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="fu">=======</span></span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>Description</span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Summaries Modified</span></span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>Description</span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;&gt;&gt;&gt;&gt;&gt;&gt; d642421b4e679fa19458d9db355068e4aad8964b</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Project 1- checkpoint 2&quot;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> &quot;Sophia Woodard&quot;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> source</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="an">embed-resources:</span><span class="co"> true</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span><span class="co"> </span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>democracy_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-11-05/democracy_data.csv&#39;</span>)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Summaries Unmodified</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>**Research Questions Based on Democracy Data:**</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Are presidential systems more likely to be democratic?</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>democracy_presid_voting <span class="ot">&lt;-</span> <span class="cf">function</span>(df) {</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(is_presidential) <span class="sc">|&gt;</span></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>      <span class="at">prop_democracy =</span> <span class="fu">mean</span>(is_democracy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(prop_democracy))</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a><span class="fu">democracy_presid_voting</span>(democracy_data)</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Does the inclusion of proportional voting increase the possibility of a free and fair election?</span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>prop_vs_fair_map <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(<span class="sc">~</span>has_proportional_voting) <span class="sc">|&gt;</span></span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(<span class="sc">~</span> <span class="fu">mean</span>(.x<span class="sc">$</span>has_free_and_fair_election, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>prop_vs_fair <span class="ot">&lt;-</span> prop_vs_fair_map <span class="sc">|&gt;</span></span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>(<span class="at">name =</span> <span class="st">&quot;proportional voting&quot;</span>, <span class="at">value =</span> <span class="st">&quot;prop of free &amp; fair&quot;</span>)<span class="sc">|&gt;</span> gt<span class="sc">::</span><span class="fu">gt</span>()</span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>prop_vs_fair</span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Summaries Modified</span></span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>How many female president or monarch leaders have led a country over time?</span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a><span class="co">#custom function w/ new column</span></span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a>summarize_female_leadership <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>   data <span class="sc">|&gt;</span></span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a>      <span class="at">female_leader =</span> is_female_monarch <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">|</span> is_female_president <span class="sc">==</span> <span class="cn">TRUE</span></span>
+<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(</span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a>      <span class="at">number_of_countries_per_year =</span> <span class="fu">n</span>(),</span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a>      <span class="at">female_leaders =</span> <span class="fu">sum</span>(female_leader, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a>      <span class="at">proportion_female =</span> female_leaders <span class="sc">/</span> number_of_countries_per_year</span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a><span class="co">#using the function + gt table</span></span>
+<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize_female_leadership</span>(democracy_data) <span class="sc">|&gt;</span></span>
+<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Female Leadership Over Time&quot;</span>,</span>
+<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Proportion of Female Leaders by Year&quot;</span></span>
+<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a>    <span class="at">number_of_countries_per_year =</span> <span class="st">&quot;Total Countries In A Year&quot;</span>,</span>
+<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a>    <span class="at">female_leaders =</span> <span class="st">&quot;Female Leaders&quot;</span>,</span>
+<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a>    <span class="at">proportion_female =</span> <span class="st">&quot;Proportion Female&quot;</span></span>
+<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(</span>
+<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> proportion_female,</span>
+<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">2</span></span>
+<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-116"><a href="#cb11-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-117"><a href="#cb11-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-118"><a href="#cb11-118" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>How many colonies are present over time?</span>
+<span id="cb11-119"><a href="#cb11-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-122"><a href="#cb11-122" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-123"><a href="#cb11-123" aria-hidden="true" tabindex="-1"></a>democracy_data <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb11-124"><a href="#cb11-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-125"><a href="#cb11-125" aria-hidden="true" tabindex="-1"></a>    <span class="at">colony_status =</span> <span class="fu">if_else</span>(is_colony <span class="sc">==</span> <span class="cn">TRUE</span>, <span class="st">&quot;Colony&quot;</span>, <span class="st">&quot;Not Colony&quot;</span>)</span>
+<span id="cb11-126"><a href="#cb11-126" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-127"><a href="#cb11-127" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-128"><a href="#cb11-128" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb11-131"><a href="#cb11-131" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-132"><a href="#cb11-132" aria-hidden="true" tabindex="-1"></a><span class="co"># this function filters the number of colunies in a specific inputted year</span></span>
+<span id="cb11-133"><a href="#cb11-133" aria-hidden="true" tabindex="-1"></a>num_colonies <span class="ot">&lt;-</span> <span class="cf">function</span>(y) {</span>
+<span id="cb11-134"><a href="#cb11-134" aria-hidden="true" tabindex="-1"></a>  democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb11-135"><a href="#cb11-135" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> y, colony_status <span class="sc">==</span> <span class="st">&quot;Colony&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-136"><a href="#cb11-136" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nrow</span>()</span>
+<span id="cb11-137"><a href="#cb11-137" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-138"><a href="#cb11-138" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-139"><a href="#cb11-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-140"><a href="#cb11-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-143"><a href="#cb11-143" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-144"><a href="#cb11-144" aria-hidden="true" tabindex="-1"></a><span class="co">#using the above functions, we are able to map the variable number_of_colonies for each year</span></span>
+<span id="cb11-145"><a href="#cb11-145" aria-hidden="true" tabindex="-1"></a>colony_summary <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb11-146"><a href="#cb11-146" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb11-147"><a href="#cb11-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb11-148"><a href="#cb11-148" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-149"><a href="#cb11-149" aria-hidden="true" tabindex="-1"></a>    <span class="at">number_of_colonies =</span> <span class="fu">map_int</span>(year, num_colonies),</span>
+<span id="cb11-150"><a href="#cb11-150" aria-hidden="true" tabindex="-1"></a>    <span class="at">proportion_of_colonies =</span> number_of_colonies <span class="sc">/</span> <span class="dv">208</span></span>
+<span id="cb11-151"><a href="#cb11-151" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-152"><a href="#cb11-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-153"><a href="#cb11-153" aria-hidden="true" tabindex="-1"></a><span class="co">#gt table here</span></span>
+<span id="cb11-154"><a href="#cb11-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-155"><a href="#cb11-155" aria-hidden="true" tabindex="-1"></a>colony_summary <span class="sc">|&gt;</span></span>
+<span id="cb11-156"><a href="#cb11-156" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-157"><a href="#cb11-157" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb11-158"><a href="#cb11-158" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Chnage In Number of Colonies by Year&quot;</span>,</span>
+<span id="cb11-159"><a href="#cb11-159" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;208 Countries In Our Dataset&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-160"><a href="#cb11-160" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb11-161"><a href="#cb11-161" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb11-162"><a href="#cb11-162" aria-hidden="true" tabindex="-1"></a>    <span class="at">number_of_colonies =</span> <span class="st">&quot;Number of Colonies&quot;</span>,</span>
+<span id="cb11-163"><a href="#cb11-163" aria-hidden="true" tabindex="-1"></a>    <span class="at">proportion_of_colonies =</span> <span class="st">&quot;Proportion of Countries That Are Colonies&quot;</span>,</span>
+<span id="cb11-164"><a href="#cb11-164" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-165"><a href="#cb11-165" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb11-166"><a href="#cb11-166" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(</span>
+<span id="cb11-167"><a href="#cb11-167" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> proportion_of_colonies,</span>
+<span id="cb11-168"><a href="#cb11-168" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">2</span></span>
+<span id="cb11-169"><a href="#cb11-169" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-170"><a href="#cb11-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
