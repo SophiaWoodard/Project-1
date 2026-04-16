@@ -11,6 +11,8 @@ execute:
   message: false
 ---
 
+
+
 ```{r}
 democracy_data <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-11-05/democracy_data.csv')
 library(tidyverse)
@@ -25,7 +27,7 @@ library(gt)
 
 ```
 
-Descript Here
+Description Here
 
 ### #2
 
