@@ -1,0 +1,42 @@
+---
+title: "Project1Checkpoint3"
+author: "Sophia Woodard"
+format: html
+editor: source
+embed-resources: true
+code-tools: true
+execute: 
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r}
+democracy_data <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-11-05/democracy_data.csv')
+library(tidyverse)
+library(gt)
+```
+
+## Data Sources
+
+### #1
+
+```{r}
+
+```
+
+Descript Here
+
+### #2
+
+```{r}
+
+```
+
+**Description Here: GDP  data explanation**
+
+## Data Summaries
+
+### #1
+
+### #2
