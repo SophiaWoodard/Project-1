@@ -17,6 +17,7 @@ democracy_data <- readr::read_csv('https://raw.githubusercontent.com/rfordatasci
 library(tidyverse)
 library(gt)
 
+
 ```
 
 
