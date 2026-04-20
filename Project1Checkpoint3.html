@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Sophia Woodard">
+<meta name="author" content="Addie Weaver, Scarlet Kwan, Sophia Woodward">
 
-<title>Project1Checkpoint3</title>
+<title>Project 1- checkpoint 3</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -2208,7 +2208,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Project1Checkpoint3</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Project 1- checkpoint 3</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -2218,7 +2218,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Sophia Woodard </p>
+             <p>Addie Weaver, Scarlet Kwan, Sophia Woodward </p>
           </div>
   </div>
     
@@ -2234,26 +2234,710 @@ vertical-align: -.125em;
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>democracy_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-11-05/democracy_data.csv&#39;</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyjson)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="data-sources" class="level2">
 <h2 class="anchored" data-anchor-id="data-sources">Data Sources</h2>
 <section id="section" class="level3">
 <h3 class="anchored" data-anchor-id="section">#1</h3>
-<p>Description Here</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>api_key <span class="ot">&lt;-</span> <span class="st">&quot;rv4QCs0xqOr3mnD4rM74V8r4FLNVDqXDcIl9yFyp&quot;</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># link to this data set https://api-ninjas.com/api/gdp</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>get_gdp <span class="ot">&lt;-</span> <span class="cf">function</span>(country, <span class="at">key =</span> api_key)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">&lt;-</span> <span class="fu">glue</span>(<span class="st">&quot;https://api.api-ninjas.com/v1/gdp?country={country};X-Api-Key={api_key}&quot;</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  my_data <span class="ot">&lt;-</span> <span class="fu">safely</span>(fromJSON)(url)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> my_data<span class="sc">$</span>result</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">#had to change it to length &amp; null cause i kept getting one or the other</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>   <span class="cf">if</span> (<span class="fu">is.null</span>(res) <span class="sc">||</span> <span class="fu">length</span>(res) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">tibble</span>(</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">country_code =</span> <span class="fu">character</span>(),</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">year =</span> <span class="fu">integer</span>(),</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">gdp =</span> <span class="fu">double</span>()</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>( <span class="co">#made a tibble for the 3 pieces of data I got from the api</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as_tibble</span>(res) <span class="sc">|&gt;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(country, year, gdp_nominal) <span class="sc">|&gt;</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>          <span class="at">country_code =</span> country,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>          <span class="at">year =</span> <span class="fu">as.integer</span>(year),</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>          <span class="at">gdp =</span> <span class="fu">as.numeric</span>(gdp_nominal)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">|&gt;</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(country_code, year, gdp)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
+</section>
+<section id="data-joins-democracy-gdp-for-dataset-1" class="level2">
+<h2 class="anchored" data-anchor-id="data-joins-democracy-gdp-for-dataset-1">Data Joins Democracy &amp; GDP For DataSet 1</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#vector of the country_codes</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># get unique country codes only</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>country_codes <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(country_code) <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(country_code)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># pull GDP data for all available countries</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>gdp_df <span class="ot">&lt;-</span> country_codes <span class="sc">|&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(get_gdp) <span class="sc">|&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>()</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#gdp_df</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>democracy_gdp <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">female_leader =</span> is_female_monarch <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">|</span> is_female_president <span class="sc">==</span> <span class="cn">TRUE</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(gdp_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;country_code&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>democracy_gdp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14,828 × 45
+   country_name country_code  year regime_category_index regime_category   
+   &lt;chr&gt;        &lt;chr&gt;        &lt;dbl&gt;                 &lt;dbl&gt; &lt;chr&gt;             
+ 1 Afghanistan  AFG           1950                     5 Royal dictatorship
+ 2 Afghanistan  AFG           1951                     5 Royal dictatorship
+ 3 Afghanistan  AFG           1952                     5 Royal dictatorship
+ 4 Afghanistan  AFG           1953                     5 Royal dictatorship
+ 5 Afghanistan  AFG           1954                     5 Royal dictatorship
+ 6 Afghanistan  AFG           1955                     5 Royal dictatorship
+ 7 Afghanistan  AFG           1956                     5 Royal dictatorship
+ 8 Afghanistan  AFG           1957                     5 Royal dictatorship
+ 9 Afghanistan  AFG           1958                     5 Royal dictatorship
+10 Afghanistan  AFG           1959                     5 Royal dictatorship
+# ℹ 14,818 more rows
+# ℹ 40 more variables: is_monarchy &lt;lgl&gt;, is_commonwealth &lt;lgl&gt;,
+#   monarch_name &lt;chr&gt;, monarch_accession_year &lt;dbl&gt;, monarch_birthyear &lt;dbl&gt;,
+#   is_female_monarch &lt;lgl&gt;, is_democracy &lt;lgl&gt;, is_presidential &lt;lgl&gt;,
+#   president_name &lt;chr&gt;, president_accesion_year &lt;dbl&gt;,
+#   president_birthyear &lt;dbl&gt;, is_interim_phase &lt;lgl&gt;,
+#   is_female_president &lt;lgl&gt;, is_colony &lt;lgl&gt;, colony_of &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+<p>The new data set we added is from a GDP API based on country and year. To add this to our overall data set we joined it by country and year. The variables added were GDP for each country.</p>
+<p>What we plan to do with this data is look into which female led countries have the highest GDP.</p>
 <section id="section-1" class="level3">
 <h3 class="anchored" data-anchor-id="section-1">#2</h3>
-<p><strong>Description Here: GDP data explanation</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>get_unemployment <span class="ot">&lt;-</span> <span class="cf">function</span>(country, <span class="at">key =</span> api_key)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">&lt;-</span> <span class="fu">glue</span>(<span class="st">&quot;https://api.api-ninjas.com/v1/unemployment?country={country};X-Api-Key={key}&quot;</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  my_data <span class="ot">&lt;-</span> <span class="fu">safely</span>(fromJSON)(url)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> my_data<span class="sc">$</span>result</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(res) <span class="sc">||</span> <span class="fu">length</span>(res) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">tibble</span>(</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">country_code =</span> <span class="fu">character</span>(),</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">year =</span> <span class="fu">integer</span>(),</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">unemployment_rate =</span> <span class="fu">double</span>()</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as_tibble</span>(res) <span class="sc">|&gt;</span> <span class="co">#made a tibble using the 3 piences of data from api</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(country, year, unemployment_rate) <span class="sc">|&gt;</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>          <span class="at">country_code =</span> country,</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>          <span class="at">year =</span> <span class="fu">as.integer</span>(year),</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>          <span class="at">unemployment_rate =</span> <span class="fu">as.numeric</span>(unemployment_rate)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">|&gt;</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(country_code, year, unemployment_rate)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
+</section>
+<section id="data-joins-democracy-unenployment-for-dataset-2" class="level2">
+<h2 class="anchored" data-anchor-id="data-joins-democracy-unenployment-for-dataset-2">Data Joins Democracy &amp; Unenployment For DataSet 2</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>country_codes <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(country_code) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(country_code)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>unemp_df <span class="ot">&lt;-</span> country_codes <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(get_unemployment) <span class="sc">|&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>()</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>democracy_unemp <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(unemp_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;country_code&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>democracy_unemp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14,799 × 44
+   country_name country_code  year regime_category_index regime_category   
+   &lt;chr&gt;        &lt;chr&gt;        &lt;dbl&gt;                 &lt;dbl&gt; &lt;chr&gt;             
+ 1 Afghanistan  AFG           1950                     5 Royal dictatorship
+ 2 Afghanistan  AFG           1951                     5 Royal dictatorship
+ 3 Afghanistan  AFG           1952                     5 Royal dictatorship
+ 4 Afghanistan  AFG           1953                     5 Royal dictatorship
+ 5 Afghanistan  AFG           1954                     5 Royal dictatorship
+ 6 Afghanistan  AFG           1955                     5 Royal dictatorship
+ 7 Afghanistan  AFG           1956                     5 Royal dictatorship
+ 8 Afghanistan  AFG           1957                     5 Royal dictatorship
+ 9 Afghanistan  AFG           1958                     5 Royal dictatorship
+10 Afghanistan  AFG           1959                     5 Royal dictatorship
+# ℹ 14,789 more rows
+# ℹ 39 more variables: is_monarchy &lt;lgl&gt;, is_commonwealth &lt;lgl&gt;,
+#   monarch_name &lt;chr&gt;, monarch_accession_year &lt;dbl&gt;, monarch_birthyear &lt;dbl&gt;,
+#   is_female_monarch &lt;lgl&gt;, is_democracy &lt;lgl&gt;, is_presidential &lt;lgl&gt;,
+#   president_name &lt;chr&gt;, president_accesion_year &lt;dbl&gt;,
+#   president_birthyear &lt;dbl&gt;, is_interim_phase &lt;lgl&gt;,
+#   is_female_president &lt;lgl&gt;, is_colony &lt;lgl&gt;, colony_of &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+<p>Description Here</p>
 </section>
 <section id="data-summaries" class="level2">
 <h2 class="anchored" data-anchor-id="data-summaries">Data Summaries</h2>
-<section id="section-2" class="level3">
-<h3 class="anchored" data-anchor-id="section-2">#1</h3>
+<section id="research-question-gdp-for-top-countries-with-most-female-leaders-over-time" class="level3">
+<h3 class="anchored" data-anchor-id="research-question-gdp-for-top-countries-with-most-female-leaders-over-time"># Research Question: GDP For Top Countries With Most Female Leaders Over Time</h3>
 </section>
-<section id="section-3" class="level3">
-<h3 class="anchored" data-anchor-id="section-3">#2</h3>
+</section>
+<section id="here-are-top-10-female-leaders-with-some-things-summarized-not-very-nicely-but-for-your-reference-to-do-the-data-summaries-or-plots" class="level1">
+<h1>Here are top 10 Female Leaders With some things summarized not very nicely but for your reference to do the data summaries or plots</h1>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>top_10_female_leaders_gdp <span class="ot">&lt;-</span> democracy_gdp <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gdp)) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country_name, country_code) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_gdp =</span> <span class="fu">mean</span>(gdp),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_female_leaders =</span> <span class="fu">sum</span>(female_leader, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(n_female_leaders, <span class="at">n =</span> <span class="dv">10</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>top_10_female_leaders_gdp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 4
+   country_name   country_code avg_gdp n_female_leaders
+   &lt;chr&gt;          &lt;chr&gt;          &lt;dbl&gt;            &lt;int&gt;
+ 1 Denmark        DNK           211.                 41
+ 2 United Kingdom GBR          1814.                 41
+ 3 Netherlands    NLD           541.                 33
+ 4 Ireland        IRL           153.                 21
+ 5 Aruba          ABW             2.39               18
+ 6 Hong Kong      HKG           170.                 18
+ 7 Iceland        ISL            11.4                16
+ 8 Liberia        LBR             2.06               15
+ 9 Philippines    PHL           137.                 15
+10 Chile          CHL           120.                 12</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Table of Top Female Leaders with their GDP</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>gt<span class="sc">::</span><span class="fu">gt</span>(top_10_female_leaders_gdp) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">country_name =</span> <span class="st">&quot;Country Name&quot;</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">country_code =</span> <span class="st">&quot;Country Code&quot;</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_gdp =</span> <span class="st">&quot;Average GDP&quot;</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_female_leaders =</span><span class="st">&quot;Number of Female Leaders&quot;</span>)<span class="sc">|&gt;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_column_labels</span>()</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span> <span class="fu">tab_header</span>(</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="fu">md</span>(<span class="st">&quot;Top Countries with Female Leaders Average GDP&quot;</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="lamybkppzc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lamybkppzc table {
+font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+#lamybkppzc thead, #lamybkppzc tbody, #lamybkppzc tfoot, #lamybkppzc tr, #lamybkppzc td, #lamybkppzc th {
+border-style: none;
+}
+#lamybkppzc p {
+margin: 0;
+padding: 0;
+}
+#lamybkppzc .gt_table {
+display: table;
+border-collapse: collapse;
+line-height: normal;
+margin-left: auto;
+margin-right: auto;
+color: #333333;
+font-size: 16px;
+font-weight: normal;
+font-style: normal;
+background-color: #FFFFFF;
+width: auto;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #A8A8A8;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #A8A8A8;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+}
+#lamybkppzc .gt_caption {
+padding-top: 4px;
+padding-bottom: 4px;
+}
+#lamybkppzc .gt_title {
+color: #333333;
+font-size: 125%;
+font-weight: initial;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-color: #FFFFFF;
+border-bottom-width: 0;
+}
+#lamybkppzc .gt_subtitle {
+color: #333333;
+font-size: 85%;
+font-weight: initial;
+padding-top: 3px;
+padding-bottom: 5px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-color: #FFFFFF;
+border-top-width: 0;
+}
+#lamybkppzc .gt_heading {
+background-color: #FFFFFF;
+text-align: center;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#lamybkppzc .gt_bottom_border {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#lamybkppzc .gt_col_headings {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#lamybkppzc .gt_col_heading {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 6px;
+padding-left: 5px;
+padding-right: 5px;
+overflow-x: hidden;
+}
+#lamybkppzc .gt_column_spanner_outer {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+padding-top: 0;
+padding-bottom: 0;
+padding-left: 4px;
+padding-right: 4px;
+}
+#lamybkppzc .gt_column_spanner_outer:first-child {
+padding-left: 0;
+}
+#lamybkppzc .gt_column_spanner_outer:last-child {
+padding-right: 0;
+}
+#lamybkppzc .gt_column_spanner {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 5px;
+overflow-x: hidden;
+display: inline-block;
+width: 100%;
+}
+#lamybkppzc .gt_spanner_row {
+border-bottom-style: hidden;
+}
+#lamybkppzc .gt_group_heading {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+text-align: left;
+}
+#lamybkppzc .gt_empty_group_heading {
+padding: 0.5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: middle;
+}
+#lamybkppzc .gt_from_md > :first-child {
+margin-top: 0;
+}
+#lamybkppzc .gt_from_md > :last-child {
+margin-bottom: 0;
+}
+#lamybkppzc .gt_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+margin: 10px;
+border-top-style: solid;
+border-top-width: 1px;
+border-top-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+overflow-x: hidden;
+}
+#lamybkppzc .gt_stub {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+}
+#lamybkppzc .gt_stub_row_group {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+vertical-align: top;
+}
+#lamybkppzc .gt_row_group_first td {
+border-top-width: 2px;
+}
+#lamybkppzc .gt_row_group_first th {
+border-top-width: 2px;
+}
+#lamybkppzc .gt_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#lamybkppzc .gt_first_summary_row {
+border-top-style: solid;
+border-top-color: #D3D3D3;
+}
+#lamybkppzc .gt_first_summary_row.thick {
+border-top-width: 2px;
+}
+#lamybkppzc .gt_last_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#lamybkppzc .gt_grand_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#lamybkppzc .gt_first_grand_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-style: double;
+border-top-width: 6px;
+border-top-color: #D3D3D3;
+}
+#lamybkppzc .gt_last_grand_summary_row_top {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: double;
+border-bottom-width: 6px;
+border-bottom-color: #D3D3D3;
+}
+#lamybkppzc .gt_striped {
+background-color: rgba(128, 128, 128, 0.05);
+}
+#lamybkppzc .gt_table_body {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#lamybkppzc .gt_footnotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#lamybkppzc .gt_footnote {
+margin: 0px;
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#lamybkppzc .gt_sourcenotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#lamybkppzc .gt_sourcenote {
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#lamybkppzc .gt_left {
+text-align: left;
+}
+#lamybkppzc .gt_center {
+text-align: center;
+}
+#lamybkppzc .gt_right {
+text-align: right;
+font-variant-numeric: tabular-nums;
+}
+#lamybkppzc .gt_font_normal {
+font-weight: normal;
+}
+#lamybkppzc .gt_font_bold {
+font-weight: bold;
+}
+#lamybkppzc .gt_font_italic {
+font-style: italic;
+}
+#lamybkppzc .gt_super {
+font-size: 65%;
+}
+#lamybkppzc .gt_footnote_marks {
+font-size: 75%;
+vertical-align: 0.4em;
+position: initial;
+}
+#lamybkppzc .gt_asterisk {
+font-size: 100%;
+vertical-align: 0;
+}
+#lamybkppzc .gt_indent_1 {
+text-indent: 5px;
+}
+#lamybkppzc .gt_indent_2 {
+text-indent: 10px;
+}
+#lamybkppzc .gt_indent_3 {
+text-indent: 15px;
+}
+#lamybkppzc .gt_indent_4 {
+text-indent: 20px;
+}
+#lamybkppzc .gt_indent_5 {
+text-indent: 25px;
+}
+#lamybkppzc .katex-display {
+display: inline-flex !important;
+margin-bottom: 0.75em !important;
+}
+#lamybkppzc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border">Top Countries with Female Leaders Average GDP</td>
+</tr>
+<tr class="gt_col_headings even">
+<th id="country_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Country Name</th>
+<th id="country_code" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Country Code</th>
+<th id="avg_gdp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Average GDP</th>
+<th id="n_female_leaders" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Number of Female Leaders</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="country_name">Denmark</td>
+<td class="gt_row gt_left" headers="country_code">DNK</td>
+<td class="gt_row gt_right" headers="avg_gdp">210.875390</td>
+<td class="gt_row gt_right" headers="n_female_leaders">41</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="country_name">United Kingdom</td>
+<td class="gt_row gt_left" headers="country_code">GBR</td>
+<td class="gt_row gt_right" headers="avg_gdp">1813.737220</td>
+<td class="gt_row gt_right" headers="n_female_leaders">41</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="country_name">Netherlands</td>
+<td class="gt_row gt_left" headers="country_code">NLD</td>
+<td class="gt_row gt_right" headers="avg_gdp">541.313293</td>
+<td class="gt_row gt_right" headers="n_female_leaders">33</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="country_name">Ireland</td>
+<td class="gt_row gt_left" headers="country_code">IRL</td>
+<td class="gt_row gt_right" headers="avg_gdp">152.633366</td>
+<td class="gt_row gt_right" headers="n_female_leaders">21</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="country_name">Aruba</td>
+<td class="gt_row gt_left" headers="country_code">ABW</td>
+<td class="gt_row gt_right" headers="avg_gdp">2.386615</td>
+<td class="gt_row gt_right" headers="n_female_leaders">18</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="country_name">Hong Kong</td>
+<td class="gt_row gt_left" headers="country_code">HKG</td>
+<td class="gt_row gt_right" headers="avg_gdp">169.760000</td>
+<td class="gt_row gt_right" headers="n_female_leaders">18</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="country_name">Iceland</td>
+<td class="gt_row gt_left" headers="country_code">ISL</td>
+<td class="gt_row gt_right" headers="avg_gdp">11.353293</td>
+<td class="gt_row gt_right" headers="n_female_leaders">16</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="country_name">Liberia</td>
+<td class="gt_row gt_left" headers="country_code">LBR</td>
+<td class="gt_row gt_right" headers="avg_gdp">2.063048</td>
+<td class="gt_row gt_right" headers="n_female_leaders">15</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="country_name">Philippines</td>
+<td class="gt_row gt_left" headers="country_code">PHL</td>
+<td class="gt_row gt_right" headers="avg_gdp">137.231293</td>
+<td class="gt_row gt_right" headers="n_female_leaders">15</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="country_name">Chile</td>
+<td class="gt_row gt_left" headers="country_code">CHL</td>
+<td class="gt_row gt_right" headers="avg_gdp">120.221293</td>
+<td class="gt_row gt_right" headers="n_female_leaders">12</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>#This plot is a Visualization of the information in the table above.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(top_10_female_leaders_gdp, <span class="fu">aes</span>(<span class="at">x =</span> n_female_leaders, <span class="at">y =</span> avg_gdp))<span class="sc">+</span><span class="fu">geom_point</span>(<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">seed =</span> <span class="dv">123</span>))<span class="sc">+</span><span class="fu">geom_line</span>(<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">seed =</span> <span class="dv">123</span>))<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Top Countries with Female Leaders Average GDP&quot;</span>, <span class="at">x=</span><span class="st">&quot;Total Number of Female Leaders&quot;</span>, <span class="at">y=</span> <span class="st">&quot;Average GDP&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img role="img" src="data:image/png;base64,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vJoPAx7QxUzqWfhMUEU75PBqPgxtQJ++X5/J1SGf1XGgtQ80oONDFe2Qw6v5MLQBXb0mfjmkeiVSJqiiHXJ4NR8GN6CP7haHMT3+RfmK98WMvrx++XvjAw3o+FBFO+Twaj4MbkCL13WW77lUvhTpcf0NmB7r3ZhCoYp2yOHVfBjegM4f/9V0+tLPqluZjz9YTOZbbR9oQMeGKtohh1fzYTADuo/+4UdHymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYfRgOZCymqhinbI4dV8GA1oLqSsFqpohxxezYc5igEVEYkzGW72dAt0K1JWC1W0Qw6v5sMcxS3Q/uFHR8pqoYp2yOHVfBgNaC6krBaqaIccXs2H0YDmQspqoYp2yOHVfBgNaC6krBaqaIccXs2H0YDmQspqoYp2yOHVfBgNaC6krBaqaIccXs2H0YDmQspqoYp2yOHVfBgNaC6krBaqaIccXs2H0YDmQspqoYp2yOHVfBgNaC6krBaqaIccXs2H0YDmQspqoYp2yOHVfBgNaC6krBaqaIccXs2H0YDmQspqoYp2yOHVfBgNaC6krBaqaIccXs2H0YDmQspqoYp2yOHVfBgNaC6krBaqaIccXs2H0YDmQspqoYp2yOHVfBgNaC6krBaqaIccXs2H0YDmQspqoYp2yOHVfBgNaC6krBaqaIccXs2H0YDmQspqoYp2yOHVfBgNaC6krBaqaIccXs2H0YDmQspqoYp2yOHVfBgNaC6krBaqaIccXs2H0YDmQspqoYp2yOHVfBgNaC6krBaqaIccXs2H0YDmQspqoYp2yOHVfBgN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W2U7HAdqNqf7NLsGtPmd2q+vfef2OND657mTWx/3ufm4I9dp7QAo3QLNSgN69DpfiXRr+fGVX599ubonWvzx8nrdPaDlo37Xq9N69vfVe8WfN6CTH92fP3x3fablEyerO68tb3diY57/ZiKdp9l+F959p+bra99580kj83nu5JavPGq8Eqk9V/HK2DcXf/LQvYxA8tCAHr1tr4UvbxcVc/jkteqPX/jt8urcPaDlnfjr1SmXnv3tuQP6L6pno19shlg/g+WewXExz303pq7TtGG6vtPm19e+c/Ose/Pz3MlVRydNrv2Hyfo1pu3f6/LBkMLe79cvh6IBPXrt78b04urow8+KOby/uB353PLA7vYD7BsP052uXhxZftHVN3d5Fn75bkzr48Yfvls8+1y9EVHbgJqYu7ydXcdp2sOYOr/TxtfXvnMzoObz7Mktbo26d2Pq+F7PPrq5+IurL+pA0Lw0oCIiPWlARUR60oCKiPSkARUR6UkDKiLSkwZURKQnDaiISE8aUBGRnjSgIiI9aUBFRHrSgIqI9KQBFRHpSQMqItKTBlREpCcNqIhITxpQEZGeNKAiIj1pQEVEetKAioj0pAEVEenpfwNT8i7XS82A+gAAAABJRU5ErkJggg==" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="research-question-.." class="level3">
+<h3 class="anchored" data-anchor-id="research-question-..">#2 Research Question: ……..</h3>
 <!-- -->
 
 </section>
@@ -2712,48 +3396,199 @@ vertical-align: -.125em;
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Project1Checkpoint3&quot;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> &quot;Sophia Woodard&quot;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> source</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="an">embed-resources:</span><span class="co"> true</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span><span class="co"> </span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>democracy_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-11-05/democracy_data.csv&#39;</span>)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Sources</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="fu">### #1</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>Description Here</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="fu">### #2</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>**Description Here: GDP  data explanation**</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Summaries</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="fu">### #1</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="fu">### #2</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Project 1- checkpoint 3&quot;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> &quot;Addie Weaver, Scarlet Kwan, Sophia Woodward&quot;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> source</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="an">embed-resources:</span><span class="co"> true</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span><span class="co"> </span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>democracy_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-11-05/democracy_data.csv&#39;</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyjson)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Sources</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="fu">### #1</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>api_key <span class="ot">&lt;-</span> <span class="st">&quot;rv4QCs0xqOr3mnD4rM74V8r4FLNVDqXDcIl9yFyp&quot;</span> </span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="co"># link to this data set https://api-ninjas.com/api/gdp</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>get_gdp <span class="ot">&lt;-</span> <span class="cf">function</span>(country, <span class="at">key =</span> api_key)</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">&lt;-</span> <span class="fu">glue</span>(<span class="st">&quot;https://api.api-ninjas.com/v1/gdp?country={country};X-Api-Key={api_key}&quot;</span>)</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>  my_data <span class="ot">&lt;-</span> <span class="fu">safely</span>(fromJSON)(url)</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> my_data<span class="sc">$</span>result</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>  <span class="co">#had to change it to length &amp; null cause i kept getting one or the other</span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>   <span class="cf">if</span> (<span class="fu">is.null</span>(res) <span class="sc">||</span> <span class="fu">length</span>(res) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">tibble</span>(</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>      <span class="at">country_code =</span> <span class="fu">character</span>(),</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>      <span class="at">year =</span> <span class="fu">integer</span>(),</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>      <span class="at">gdp =</span> <span class="fu">double</span>()</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>( <span class="co">#made a tibble for the 3 pieces of data I got from the api</span></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as_tibble</span>(res) <span class="sc">|&gt;</span></span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(country, year, gdp_nominal) <span class="sc">|&gt;</span></span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>          <span class="at">country_code =</span> country,</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>          <span class="at">year =</span> <span class="fu">as.integer</span>(year),</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>          <span class="at">gdp =</span> <span class="fu">as.numeric</span>(gdp_nominal)</span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">|&gt;</span></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(country_code, year, gdp)</span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Joins Democracy &amp; GDP For DataSet 1</span></span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a><span class="co">#vector of the country_codes</span></span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a><span class="co"># get unique country codes only</span></span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>country_codes <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(country_code) <span class="sc">|&gt;</span></span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(country_code)</span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a><span class="co"># pull GDP data for all available countries</span></span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>gdp_df <span class="ot">&lt;-</span> country_codes <span class="sc">|&gt;</span></span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(get_gdp) <span class="sc">|&gt;</span></span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>()</span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a><span class="co">#gdp_df</span></span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a>democracy_gdp <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a>    <span class="at">female_leader =</span> is_female_monarch <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">|</span> is_female_president <span class="sc">==</span> <span class="cn">TRUE</span></span>
+<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(gdp_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;country_code&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
+<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a>democracy_gdp</span>
+<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a>The new data set we added is from a GDP API based on country and year. To add this to our overall data set we joined it by country and year. The variables added were GDP for each country.</span>
+<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a>What we plan to do with this data is look into which female led countries have the highest GDP.</span>
+<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-97"><a href="#cb12-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a><span class="fu">### #2</span></span>
+<span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a>get_unemployment <span class="ot">&lt;-</span> <span class="cf">function</span>(country, <span class="at">key =</span> api_key)</span>
+<span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">&lt;-</span> <span class="fu">glue</span>(<span class="st">&quot;https://api.api-ninjas.com/v1/unemployment?country={country};X-Api-Key={key}&quot;</span>)</span>
+<span id="cb12-107"><a href="#cb12-107" aria-hidden="true" tabindex="-1"></a>  my_data <span class="ot">&lt;-</span> <span class="fu">safely</span>(fromJSON)(url)</span>
+<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-109"><a href="#cb12-109" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> my_data<span class="sc">$</span>result</span>
+<span id="cb12-110"><a href="#cb12-110" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-111"><a href="#cb12-111" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(res) <span class="sc">||</span> <span class="fu">length</span>(res) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb12-112"><a href="#cb12-112" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">tibble</span>(</span>
+<span id="cb12-113"><a href="#cb12-113" aria-hidden="true" tabindex="-1"></a>      <span class="at">country_code =</span> <span class="fu">character</span>(),</span>
+<span id="cb12-114"><a href="#cb12-114" aria-hidden="true" tabindex="-1"></a>      <span class="at">year =</span> <span class="fu">integer</span>(),</span>
+<span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a>      <span class="at">unemployment_rate =</span> <span class="fu">double</span>()</span>
+<span id="cb12-116"><a href="#cb12-116" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb12-117"><a href="#cb12-117" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb12-118"><a href="#cb12-118" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(</span>
+<span id="cb12-119"><a href="#cb12-119" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as_tibble</span>(res) <span class="sc">|&gt;</span> <span class="co">#made a tibble using the 3 piences of data from api</span></span>
+<span id="cb12-120"><a href="#cb12-120" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(country, year, unemployment_rate) <span class="sc">|&gt;</span></span>
+<span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(</span>
+<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a>          <span class="at">country_code =</span> country,</span>
+<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a>          <span class="at">year =</span> <span class="fu">as.integer</span>(year),</span>
+<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a>          <span class="at">unemployment_rate =</span> <span class="fu">as.numeric</span>(unemployment_rate)</span>
+<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">|&gt;</span></span>
+<span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(country_code, year, unemployment_rate)</span>
+<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-132"><a href="#cb12-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Joins Democracy &amp; Unenployment For DataSet 2</span></span>
+<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a>country_codes <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(country_code) <span class="sc">|&gt;</span></span>
+<span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(country_code)</span>
+<span id="cb12-140"><a href="#cb12-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-141"><a href="#cb12-141" aria-hidden="true" tabindex="-1"></a>unemp_df <span class="ot">&lt;-</span> country_codes <span class="sc">|&gt;</span></span>
+<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(get_unemployment) <span class="sc">|&gt;</span></span>
+<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>()</span>
+<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-145"><a href="#cb12-145" aria-hidden="true" tabindex="-1"></a>democracy_unemp <span class="ot">&lt;-</span> democracy_data <span class="sc">|&gt;</span></span>
+<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(unemp_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;country_code&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
+<span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-148"><a href="#cb12-148" aria-hidden="true" tabindex="-1"></a>democracy_unemp</span>
+<span id="cb12-149"><a href="#cb12-149" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-151"><a href="#cb12-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-152"><a href="#cb12-152" aria-hidden="true" tabindex="-1"></a>Description Here</span>
+<span id="cb12-153"><a href="#cb12-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-154"><a href="#cb12-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-155"><a href="#cb12-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-156"><a href="#cb12-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-157"><a href="#cb12-157" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Summaries</span></span>
+<span id="cb12-158"><a href="#cb12-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-159"><a href="#cb12-159" aria-hidden="true" tabindex="-1"></a><span class="fu">### \# Research Question: GDP For Top Countries With Most Female Leaders Over Time</span></span>
+<span id="cb12-160"><a href="#cb12-160" aria-hidden="true" tabindex="-1"></a><span class="fu"># Here are top 10 Female Leaders With some things summarized not very nicely but for your reference to do the data summaries or plots</span></span>
+<span id="cb12-161"><a href="#cb12-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-164"><a href="#cb12-164" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-165"><a href="#cb12-165" aria-hidden="true" tabindex="-1"></a>top_10_female_leaders_gdp <span class="ot">&lt;-</span> democracy_gdp <span class="sc">|&gt;</span></span>
+<span id="cb12-166"><a href="#cb12-166" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gdp)) <span class="sc">|&gt;</span></span>
+<span id="cb12-167"><a href="#cb12-167" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country_name, country_code) <span class="sc">|&gt;</span></span>
+<span id="cb12-168"><a href="#cb12-168" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb12-169"><a href="#cb12-169" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_gdp =</span> <span class="fu">mean</span>(gdp),</span>
+<span id="cb12-170"><a href="#cb12-170" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_female_leaders =</span> <span class="fu">sum</span>(female_leader, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb12-171"><a href="#cb12-171" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb12-172"><a href="#cb12-172" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-173"><a href="#cb12-173" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(n_female_leaders, <span class="at">n =</span> <span class="dv">10</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-174"><a href="#cb12-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-175"><a href="#cb12-175" aria-hidden="true" tabindex="-1"></a>top_10_female_leaders_gdp</span>
+<span id="cb12-176"><a href="#cb12-176" aria-hidden="true" tabindex="-1"></a><span class="co">#Table of Top Female Leaders with their GDP</span></span>
+<span id="cb12-177"><a href="#cb12-177" aria-hidden="true" tabindex="-1"></a>gt<span class="sc">::</span><span class="fu">gt</span>(top_10_female_leaders_gdp) <span class="sc">|&gt;</span></span>
+<span id="cb12-178"><a href="#cb12-178" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb12-179"><a href="#cb12-179" aria-hidden="true" tabindex="-1"></a>  <span class="at">country_name =</span> <span class="st">&quot;Country Name&quot;</span>,</span>
+<span id="cb12-180"><a href="#cb12-180" aria-hidden="true" tabindex="-1"></a>  <span class="at">country_code =</span> <span class="st">&quot;Country Code&quot;</span>,</span>
+<span id="cb12-181"><a href="#cb12-181" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_gdp =</span> <span class="st">&quot;Average GDP&quot;</span>,</span>
+<span id="cb12-182"><a href="#cb12-182" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_female_leaders =</span><span class="st">&quot;Number of Female Leaders&quot;</span>)<span class="sc">|&gt;</span></span>
+<span id="cb12-183"><a href="#cb12-183" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="cb12-184"><a href="#cb12-184" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb12-185"><a href="#cb12-185" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_column_labels</span>()</span>
+<span id="cb12-186"><a href="#cb12-186" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span> <span class="fu">tab_header</span>(</span>
+<span id="cb12-187"><a href="#cb12-187" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="fu">md</span>(<span class="st">&quot;Top Countries with Female Leaders Average GDP&quot;</span>)</span>
+<span id="cb12-188"><a href="#cb12-188" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-189"><a href="#cb12-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-190"><a href="#cb12-190" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-191"><a href="#cb12-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-192"><a href="#cb12-192" aria-hidden="true" tabindex="-1"></a>#This plot is a Visualization of the information in the table above.</span>
+<span id="cb12-193"><a href="#cb12-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-196"><a href="#cb12-196" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-197"><a href="#cb12-197" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(top_10_female_leaders_gdp, <span class="fu">aes</span>(<span class="at">x =</span> n_female_leaders, <span class="at">y =</span> avg_gdp))<span class="sc">+</span><span class="fu">geom_point</span>(<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">seed =</span> <span class="dv">123</span>))<span class="sc">+</span><span class="fu">geom_line</span>(<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">seed =</span> <span class="dv">123</span>))<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Top Countries with Female Leaders Average GDP&quot;</span>, <span class="at">x=</span><span class="st">&quot;Total Number of Female Leaders&quot;</span>, <span class="at">y=</span> <span class="st">&quot;Average GDP&quot;</span>)</span>
+<span id="cb12-198"><a href="#cb12-198" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-199"><a href="#cb12-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-200"><a href="#cb12-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-201"><a href="#cb12-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-202"><a href="#cb12-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-203"><a href="#cb12-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-204"><a href="#cb12-204" aria-hidden="true" tabindex="-1"></a><span class="fu">### #2 Research Question: ........</span></span>
+<span id="cb12-205"><a href="#cb12-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-208"><a href="#cb12-208" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-209"><a href="#cb12-209" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

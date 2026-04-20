@@ -1,6 +1,6 @@
 ---
-title: "Project1Checkpoint3"
-author: "Sophia Woodard"
+title: "Project 1- checkpoint 3"
+author: "Addie Weaver, Scarlet Kwan, Sophia Woodward"
 format: html
 editor: source
 embed-resources: true
@@ -11,12 +11,15 @@ execute:
   message: false
 ---
 
-
-
 ```{r}
+
 democracy_data <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-11-05/democracy_data.csv')
 library(tidyverse)
 library(gt)
+library(glue)
+library(httr)
+library(tidyjson)
+library(jsonlite)
 ```
 
 ## Data Sources
@@ -24,21 +27,171 @@ library(gt)
 ### #1
 
 ```{r}
+api_key <- "rv4QCs0xqOr3mnD4rM74V8r4FLNVDqXDcIl9yFyp" 
+# link to this data set https://api-ninjas.com/api/gdp
+
+get_gdp <- function(country, key = api_key)
+  {
+  
+  url <- glue("https://api.api-ninjas.com/v1/gdp?country={country};X-Api-Key={api_key}")
+  my_data <- safely(fromJSON)(url)
+  
+  res <- my_data$result
+  
+  #had to change it to length & null cause i kept getting one or the other
+   if (is.null(res) || length(res) == 0) {
+    return(tibble(
+      country_code = character(),
+      year = integer(),
+      gdp = double()
+    ))
+  } else {
+    return( #made a tibble for the 3 pieces of data I got from the api
+      as_tibble(res) |>
+        select(country, year, gdp_nominal) |>
+        mutate(
+          country_code = country,
+          year = as.integer(year),
+          gdp = as.numeric(gdp_nominal)
+        ) |>
+        select(country_code, year, gdp)
+    )
+  }
+}
 
 ```
 
-Description Here
+## Data Joins Democracy & GDP For DataSet 1
+```{r}
+
+
+#vector of the country_codes
+# get unique country codes only
+country_codes <- democracy_data |>
+  distinct(country_code) |>
+  pull(country_code)
+
+# pull GDP data for all available countries
+gdp_df <- country_codes |>
+  map(get_gdp) |>
+  bind_rows()
+
+#gdp_df
+
+democracy_gdp <- democracy_data |>
+  mutate(
+    female_leader = is_female_monarch == TRUE | is_female_president == TRUE
+  ) |>
+  left_join(gdp_df, by = c("country_code", "year"))
+
+democracy_gdp
+
+```
+The new data set we added is from a GDP API based on country and year. To add this to our overall data set we joined it by country and year. The variables added were GDP for each country.
+
+What we plan to do with this data is look into which female led countries have the highest GDP.
+
 
 ### #2
 
 ```{r}
+get_unemployment <- function(country, key = api_key)
+{
+  
+  url <- glue("https://api.api-ninjas.com/v1/unemployment?country={country};X-Api-Key={key}")
+  my_data <- safely(fromJSON)(url)
+  
+  res <- my_data$result
+  
+  if (is.null(res) || length(res) == 0) {
+    return(tibble(
+      country_code = character(),
+      year = integer(),
+      unemployment_rate = double()
+    ))
+  } else {
+    return(
+      as_tibble(res) |> #made a tibble using the 3 piences of data from api
+        select(country, year, unemployment_rate) |>
+        mutate(
+          country_code = country,
+          year = as.integer(year),
+          unemployment_rate = as.numeric(unemployment_rate)
+        ) |>
+        select(country_code, year, unemployment_rate)
+    )
+  }
+}
 
 ```
 
-**Description Here: GDP  data explanation**
+## Data Joins Democracy & Unenployment For DataSet 2
+```{r}
+country_codes <- democracy_data |>
+  distinct(country_code) |>
+  pull(country_code)
+
+unemp_df <- country_codes |>
+  map(get_unemployment) |>
+  bind_rows()
+
+democracy_unemp <- democracy_data |>
+  left_join(unemp_df, by = c("country_code", "year"))
+
+democracy_unemp
+```
+
+
+Description Here
+
+
+
 
 ## Data Summaries
 
-### #1
+### \# Research Question: GDP For Top Countries With Most Female Leaders Over Time
+# Here are top 10 Female Leaders With some things summarized not very nicely but for your reference to do the data summaries or plots
 
-### #2
+```{r}
+top_10_female_leaders_gdp <- democracy_gdp |>
+  filter(!is.na(gdp)) |>
+  group_by(country_name, country_code) |>
+  summarize(
+    avg_gdp = mean(gdp),
+    n_female_leaders = sum(female_leader, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  slice_max(n_female_leaders, n = 10, with_ties = FALSE)
+
+top_10_female_leaders_gdp
+#Table of Top Female Leaders with their GDP
+gt::gt(top_10_female_leaders_gdp) |>
+  cols_label(
+  country_name = "Country Name",
+  country_code = "Country Code",
+  avg_gdp = "Average GDP",
+  n_female_leaders ="Number of Female Leaders")|>
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_column_labels()
+    ) |> tab_header(
+      title = md("Top Countries with Female Leaders Average GDP")
+    )
+
+```
+
+#This plot is a Visualization of the information in the table above.
+
+```{r}
+ggplot(top_10_female_leaders_gdp, aes(x = n_female_leaders, y = avg_gdp))+geom_point(position = position_jitter(width = 0.2, seed = 123))+geom_line(position = position_jitter(width = 0.2, seed = 123))+labs(title = "Top Countries with Female Leaders Average GDP", x="Total Number of Female Leaders", y= "Average GDP")+theme_minimal()
+```
+
+
+
+
+
+### #2 Research Question: ........
+
+```{r}
+
+```
