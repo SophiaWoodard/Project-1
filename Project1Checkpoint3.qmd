@@ -187,11 +187,58 @@ ggplot(top_10_female_leaders_gdp, aes(x = n_female_leaders, y = avg_gdp))+geom_p
 ```
 
 
+## Data Summaries
 
-
-
-### #2 Research Question: ........
+### Research Question: GDP For Top Countries With Most Female Leaders Over Time
 
 ```{r}
+top_10_female_leaders_gdp <- democracy_gdp |>
+  filter(!is.na(gdp)) |>
+  group_by(country_name, country_code) |>
+  summarize(
+    avg_gdp = mean(gdp),
+    n_female_leaders = sum(female_leader, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  slice_max(n_female_leaders, n = 10, with_ties = FALSE)
+
+top_10_female_leaders_gdp
+#Table of Top Female Leaders with their GDP
+gt::gt(top_10_female_leaders_gdp) |>
+  cols_label(
+  country_name = "Country Name",
+  country_code = "Country Code",
+  avg_gdp = "Average GDP",
+  n_female_leaders ="Number of Female Leaders")|>
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_column_labels()
+    ) |> tab_header(
+      title = md("Top Countries with Female Leaders Average GDP")
+    )
 
 ```
+
+#This plot is a Visualization of the information in the table above.
+
+
+### #2 Research Question: Does the type of regime of a country/region affect the unemployment rate?
+```{r}
+#| label: visualization-to-answer-research question
+
+
+unemploy_data <- democracy_unemp |>
+  inner_join(gdp_df, by = c("country_code", "year"), relationship = "many-to-many") |>
+  filter( year == "2019",
+          !is.na(regime_category_index)) 
+
+ggplot(unemploy_data,
+       aes(x = regime_category, y = unemployment_rate)) +
+  geom_boxplot() +  
+  labs(title = "Political Regime Type and Unemployment Rate Across Countries (2019)",
+       x = "Regime Category", 
+       y = "Unemployment Rate") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+#The boxplot above shows us that the unemployment rate looks pretty similar among different regime categories, with similar medians and IQR.
