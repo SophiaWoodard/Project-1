@@ -246,3 +246,4 @@ ggplot(unemploy_data,
 
 ```
 #The boxplot above shows us that the unemployment rate looks pretty similar among different regime categories, with similar medians and IQR.
+
