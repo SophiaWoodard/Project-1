@@ -1,19 +1,18 @@
 ---
 title: "Project 1- checkpoint 4"
-author: "Addie Weaver, Scarlet Kwan, Sophia Woodard"
+author: "Addie Weaver, Scarlet Kwan, Sophia Woodward"
 format: html
 editor: source
 embed-resources: true
 code-tools: true
-execute:
+execute: 
   echo: true
   warning: false
   message: false
 ---
 ```{r}
 #| label: install-packages-and-read-in-data
-#| message: false
-#| eval: FALSE
+#| message: false 
 
 library(tidyverse)
 library(glue)
@@ -21,16 +20,10 @@ library(httr)
 library(gt)
 library(broom)
 library(tibble)
-democracy_data <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-11-05/democracy_data.csv')
-democracy_unemp <- democracy_data |>
-  left_join(unemp_df, by = c("country_code", "year"))
-democracy_gdp <- democracy_data |>
-  mutate(
-    female_leader = is_female_monarch == TRUE | is_female_president == TRUE
-  ) |>
-  left_join(gdp_df, by = c("country_code", "year"))
+gdp_df<- read_csv("gdp_df.csv")
+democracy_unemp <- read_csv("democracy_and_unemploy.csv")
+democracy_gdp <- read_csv("democracy_and_gdp.csv")
 
-democracy_gdp
 
 ```
 
@@ -113,7 +106,6 @@ Although the estimated coefficient for female leadership is positive, and 5.38 f
 ## Data Summaries
 
 ### Research Question: GDP For Top Countries With Most Female Leaders Over Time
-
 ```{r}
 top_10_female_leaders_gdp <- democracy_gdp |>
   filter(!is.na(gdp)) |>
@@ -140,20 +132,6 @@ gt::gt(top_10_female_leaders_gdp) |>
       title = md("Top Countries with Female Leaders Average GDP")
     )
 
-
-ggplot(top_10_female_leaders_gdp, 
-       aes(x = n_female_leaders, y = log(avg_gdp))) +
-  geom_point(position = position_jitter(width = 0.2, seed = 123)) +
-  geom_smooth(method = "lm", se = TRUE, color = "#9AC0CD", fill="#E0FFFF") + 
-  labs(
-    title = "Top Countries with Female Leaders Average GDP",
-    x = "Total Number of Female Leaders",
-    y = "Log of Average GDP"
-  ) +
-  theme_minimal()
-
-
-
 ```
 
 #This plot is a Visualization of the information in the table above.
@@ -165,7 +143,17 @@ ggplot(top_10_female_leaders_gdp, aes(x = n_female_leaders, y = avg_gdp))+
        x="Total Number of Female Leaders", 
        y= "Average GDP")+
   theme_minimal()
+
+ggplot(top_10_female_leaders_gdp, aes(x = reorder(country_name, avg_gdp), group = 1)) + 
+  geom_ribbon(aes(ymin = 0, ymax = log(avg_gdp)), alpha = 0.3, fill="#9AC0CD") +
+  geom_line(aes(y = log(avg_gdp))) + geom_point(aes(y = log(avg_gdp))) + 
+  labs( title = "Top Countries with Female Leaders Average GDP", x = "Country", y = "Log of Average GDP", alt = "Line chart of countries ordered by average GDP, showing log-transformed GDP values with a shaded ribbon from zero to each value." ) + 
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
 ```
+
+
 
 ### #2 Research Question: Does the type of regime of a country/region affect the unemployment rate?
 ```{r}
