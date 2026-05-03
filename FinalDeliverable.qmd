@@ -38,7 +38,11 @@ The dataset includes information on 192 different sovereign countries and 16 oth
 
 This dataset was an expansion on other collections of geopolitical data that the authors took and added more information to. The information included features of government, elections, leadership types, and more. When it came to our analysis for this data, it was incredibly helpful to have all this information because it gave us the ability to have an accurate list of all the sovereign countries and classify them into different categories based on regime, leader, and more. Additionally, it provided us with additional information that gave context to each of these countries.
 
+<<<<<<< HEAD
 [Source]{.underline}: https://www.christianbjoernskov.com/bjoernskovrodedata/
+=======
+https://www.christianbjoernskov.com/bjoernskovrodedata/
+>>>>>>> 59fb5e3e1afe4d6090d3279c852e50ad3d7129b7
 
 ### GDP Data
 
@@ -263,6 +267,12 @@ gt_table <- table_data |>
 gt_table
 ```
 
+<<<<<<< HEAD
 The results of the linear regression model on the relationship between female leadership and GDP per country show that there is no statistically significant association between the two variables. We decided to use GDP logged to reduce skewness that we saw in our original analysis through plotting. The model produced an F-statistic of 0.664 with a p-value of 0.416. Because this p-value is greater than 0.05, we fail to reject the null hypothesis and conclude that there is no evidence that countries with female leaders have different GDP levels compared to those without female leaders.
 
 Although the estimated coefficient for female leadership is positive, and 5.38 for normal log which suggests higher GDP in countries with female leaders by over 500%, this result is not statistically significant and should be interpreted with caution. The large standard error & R squared indicates that the estimate varies greatly, and the model itself explains very little of the variation in GDP (R² = 0.002). This means that female leadership alone is not a meaningful predictor of economic GDP in this analysis. Additionally, a substantial number of observations were dropped due to missing data in both gender leadership and GDP, which may further limit the reliability and generalization of these results.
+=======
+The results of the linear regression model on the relationship between female leadership and GDP show that there is no statistically significant association between the two variables. We decided to use GDP logged to reduce skewness that we saw in our original analysis through plotting. The model produced an F-statistic of 0.664 with a p-value of 0.416. Because this p-value is greater than 0.05, we fail to reject the null hypothesis and conclude that there is no evidence that countries with female leaders have different GDP levels compared to those without female leaders.
+
+Although the estimated coefficient for female leadership is positive, and 5.38 for normal log which suggests higher GDP in countries with female leaders by over 500%, this result is not statistically significant and should be interpreted with caution. The large standard error & R squared indicates that the estimate varies greatly, and the model itself explains very little of the variation in GDP (R² = 0.002). This means that female leadership alone is not a meaningful predictor of economic GDP in this analysis. Additionally, a substantial number of observations were dropped due to missing data in both gender leadership and GDP, which may further limit the reliability and generalizability of these results.
+>>>>>>> 59fb5e3e1afe4d6090d3279c852e50ad3d7129b7

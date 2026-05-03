@@ -1,0 +1,3576 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Politics, Gender &amp; Economics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="Project2Checkpoint1_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Project2Checkpoint1_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Project2Checkpoint1_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Project2Checkpoint1_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="Project2Checkpoint1_files/libs/quarto-html/popper.min.js"></script>
+<script src="Project2Checkpoint1_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Project2Checkpoint1_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Project2Checkpoint1_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Project2Checkpoint1_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="Project2Checkpoint1_files/libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="Project2Checkpoint1_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="Project2Checkpoint1_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Project2Checkpoint1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Project2Checkpoint1_files/libs/bootstrap/bootstrap-7bdf1c8e8f98638fa310f44532f0922b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="Project2Checkpoint1_files/libs/bootstrap/bootstrap-dark-7bdf1c8e8f98638fa310f44532f0922b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="Project2Checkpoint1_files/libs/bootstrap/bootstrap-7bdf1c8e8f98638fa310f44532f0922b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="Project2Checkpoint1_files/libs/quarto-dashboard/quarto-dashboard.js"></script>
+<script src="Project2Checkpoint1_files/libs/quarto-dashboard/stickythead.js"></script>
+
+
+
+<script src="Project2Checkpoint1_files/libs/quarto-dashboard/web-components.js" type="module"></script>
+<script src="Project2Checkpoint1_files/libs/quarto-dashboard/components.js"></script>
+
+
+
+</head>
+
+<body class="quarto-dashboard fullcontent quarto-light">
+
+<header id="quarto-dashboard-header">
+<nav class="navbar navbar-expand-md slim" data-bs-theme="dark">
+  <div class="navbar-container container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-controls="dashboard-collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>    
+
+
+    <div class="navbar-brand-container">
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/44/44386.png" alt="" class="navbar-logo light-content d-inline-block"></a>
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/44/44386.png" alt="" class="navbar-logo dark-content d-inline-block"></a>
+      <div class="navbar-title">
+        <div class="navbar-title-text"><a href="#">Politics, Gender &amp; Economics</a></div>
+        
+        
+      </div>
+    </div>
+<div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-data-overview" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#data-overview" data-scrolling="true" href="#data-overview" aria-controls="data-overview" aria-selected="true"><span class="nav-link-text">Data Overview</span></a></li><li class="nav-item" role="presentation"><a id="tab-female-leadership-gdp" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#female-leadership-gdp" data-scrolling="true" href="#female-leadership-gdp" aria-controls="female-leadership-gdp" aria-selected="false"><span class="nav-link-text">Female Leadership &amp; GDP</span></a></li><li class="nav-item" role="presentation"><a id="tab-regime-type-unemployment" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#regime-type-unemployment" data-scrolling="true" href="#regime-type-unemployment" aria-controls="regime-type-unemployment" aria-selected="false"><span class="nav-link-text">Regime Type &amp; Unemployment</span></a></li><li class="nav-item" role="presentation"><a id="tab-conclusions" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#conclusions" data-scrolling="true" href="#conclusions" aria-controls="conclusions" aria-selected="false"><span class="nav-link-text">Conclusions</span></a></li></ul><div class="quarto-dashboard-links"><a class="quarto-dashboard-link" href="https://linkedin.com" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a><a class="quarto-dashboard-link" href="https://www.instagram.com/phiawoodard/" aria-label="Instagram"><i class="bi bi-instagram"></i></a><a class="quarto-dashboard-link" href="mailto:smwoodar@calpoly.edu" aria-label="Email"><i class="bi bi-envelope"></i></a></div></div></div>
+</nav>
+</header>
+<div class="page-layout-custom quarto-dashboard-content bslib-gap-spacing html-fill-container dashboard-scrolling quarto-dashboard-pages">  
+
+<div class="bslib-grid-item html-fill-item tab-content bslib-grid" data-layout="flow" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div id="data-overview" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-data-overview">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-title="Project Summary" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Project Summary
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<p>This dashboard explores two research questions we are interested in learning more about centered around political systems and economic outcomes:</p>
+<ol type="1">
+<li><p><strong>Female Leadership &amp; GDP</strong> — How has Gross Domestic Product (GDP) changed over time for the countries with the most years of female national leadership?</p></li>
+<li><p><strong>Regime Type &amp; Unemployment</strong> — Does the type of political regime a country operates under affect its unemployment rate?</p></li>
+</ol>
+<p>The analysis draws on three datasets covering 192 sovereign countries from 1950–2020, combining geopolitical data with GDP and unemployment figures.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-title="Political System Data" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Political System Data
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<strong>Bjørnskov–Rode Dataset</strong>
+<p>Our first dataset was created by two economics researchers who were studying different governments and how they change over time. The purpose of this dataset was to be a resource for those interested in studying how different countries and political systems transition through the years. Additionally, the two researchers, Christian Bjørnskov and Martin Rode, when doing their own research, felt that the data available at the time was inadequate.</p>
+<p>The dataset includes information on 192 different sovereign countries and 16 other self-governed territories from the years 1950 to 2020 on each of these countries’ regime type, democratic status, leadership, elections, transfers of power, and their colonial history.</p>
+<p>This dataset was an expansion on other collections of geopolitical data that the authors took and added more information to. The information included features of government, elections, leadership types, and more. When it came to our analysis for this data, it was incredibly helpful to have all this information because it gave us the ability to have an accurate list of all the sovereign countries and classify them into different categories based on regime, leader, and more. Additionally, it provided us with additional information that gave context to each of these countries.</p>
+<a href="https://www.christianbjoernskov.com/bjoernskovrodedata/">View Dataset →</a>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card html-fill-item html-fill-container bslib-card" data-title="Gross Domestic Product Data" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Gross Domestic Product Data
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<strong>API Ninjas GDP API</strong>
+<p>Our second dataset comes from API Ninjas and is an API with GDP data on all 192 sovereign countries. This data provided us with a wide range of GDP-related variables and information for each country. Some examples of this include GDP per country, GDP per country per capita, nominal GDP, and more. The observational unit was each country and year combination, the API provides current and historical GDP data for countries around the world. API Ninjas didn’t explicitly state where they got their data from, so we don’t have full transparency on where the data came from, nor why they collected it.</p>
+<p>These data are of interest to our first research question because GDP is one of the most used and recognized measures of national economic output. By linking GDP figures to the combined dataset, we are able to track how the economies of countries with more frequent female leadership have changed over time and see whether any patterns or relationships exist between leadership and economic performance. For our research purposes, we focused on GDP per country in billions of United States dollars. Additionally, when extracting this data from the API to merge it with our geopolitical data, we used both the country name and code.</p>
+<em>Note: API Ninjas does not explicitly disclose its primary data sources.</em>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-title="Unemployment Data" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Unemployment Data
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<strong>API Ninjas Unemployment API</strong>
+<p>Our third dataset is from API Ninjas and is an API with unemployment data. This API provides data on the historical, current, and projected future unemployment statistics about every country in the world. This data can be retrieved through programming and can be queried by country name or ISO country code. The response variables in the data includes the country, the year of observation, and the unemployment rate in percentage form. The observational unit was each country and year combination. API Ninjas didn’t explicitly state where they got their data from, so we don’t have full transparency on where the data came from. The data was collected over multiple years and over a lot of countries to get the most in depth and detailed and informative data possible.</p>
+<p>A country’s unemployment rate is important because it shows how healthy its economy is, with low unemployment usually meaning people are working, earning money, and spending, which helps the economy grow, and high unemployment suggesting economic problems, with fewer jobs available and lower incomes. Different organizations like governments and businesses use this information on unemployment to make decisions about policies, hiring, and investments. By combining this unemployment dataset with our original one, we are able to answer questions regarding the relationship between a country’s unemployment rate and their government or socio-economic characteristics, in this case whether the regime of the country affects the unemployment rate.</p>
+<em>Note: API Ninjas does not explicitly disclose its primary data sources.</em>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+</div>
+<div id="female-leadership-gdp" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-female-leadership-gdp">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-title="GDP Tables" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+GDP Tables
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<div class="panel-tabset html-fill-item html-fill-container">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Table 1: Top Countries</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Table 2: GDP Change</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Regression Table</a></li></ul>
+<div class="tab-content html-fill-item html-fill-container">
+<div id="tabset-1-1" class="tab-pane active html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell html-fill-item html-fill-container">
+<div id="tbl-top10-female" class="cell quarto-float quarto-figure quarto-figure-center html-fill-item html-fill-container">
+<figure class="quarto-float quarto-float-tbl figure html-fill-item html-fill-container">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-top10-female-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1
+</figcaption>
+<div aria-describedby="tbl-top10-female-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<div id="ockugszqyd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;" class="html-fill-item html-fill-container">
+<style>#ockugszqyd table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ockugszqyd thead, #ockugszqyd tbody, #ockugszqyd tfoot, #ockugszqyd tr, #ockugszqyd td, #ockugszqyd th {
+  border-style: none;
+}
+
+#ockugszqyd p {
+  margin: 0;
+  padding: 0;
+}
+
+#ockugszqyd .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ockugszqyd .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ockugszqyd .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ockugszqyd .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ockugszqyd .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ockugszqyd .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ockugszqyd .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ockugszqyd .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ockugszqyd .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ockugszqyd .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ockugszqyd .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ockugszqyd .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ockugszqyd .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ockugszqyd .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ockugszqyd .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ockugszqyd .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ockugszqyd .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ockugszqyd .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ockugszqyd .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ockugszqyd .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ockugszqyd .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ockugszqyd .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ockugszqyd .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ockugszqyd .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ockugszqyd .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ockugszqyd .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ockugszqyd .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ockugszqyd .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ockugszqyd .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ockugszqyd .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ockugszqyd .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ockugszqyd .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ockugszqyd .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ockugszqyd .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ockugszqyd .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ockugszqyd .gt_left {
+  text-align: left;
+}
+
+#ockugszqyd .gt_center {
+  text-align: center;
+}
+
+#ockugszqyd .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ockugszqyd .gt_font_normal {
+  font-weight: normal;
+}
+
+#ockugszqyd .gt_font_bold {
+  font-weight: bold;
+}
+
+#ockugszqyd .gt_font_italic {
+  font-style: italic;
+}
+
+#ockugszqyd .gt_super {
+  font-size: 65%;
+}
+
+#ockugszqyd .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ockugszqyd .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ockugszqyd .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ockugszqyd .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ockugszqyd .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ockugszqyd .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ockugszqyd .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ockugszqyd .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ockugszqyd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="4" class="gt_heading gt_title gt_font_normal"><strong>Countries with the Most Years of Female National Leadership</strong></td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Based on country-years with available GDP data</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="country_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Country</th>
+<th id="country_code" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Country Code</th>
+<th id="years_with_female_leader" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Years with Female Leader</th>
+<th id="avg_gdp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Average GDP</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="country_name">Denmark</td>
+<td class="gt_row gt_left" headers="country_code">DNK</td>
+<td class="gt_row gt_right" headers="years_with_female_leader">41</td>
+<td class="gt_row gt_right" headers="avg_gdp">$211</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="country_name">United Kingdom</td>
+<td class="gt_row gt_left" headers="country_code">GBR</td>
+<td class="gt_row gt_right" headers="years_with_female_leader">41</td>
+<td class="gt_row gt_right" headers="avg_gdp">$1,814</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="country_name">Netherlands</td>
+<td class="gt_row gt_left" headers="country_code">NLD</td>
+<td class="gt_row gt_right" headers="years_with_female_leader">33</td>
+<td class="gt_row gt_right" headers="avg_gdp">$541</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="country_name">Ireland</td>
+<td class="gt_row gt_left" headers="country_code">IRL</td>
+<td class="gt_row gt_right" headers="years_with_female_leader">21</td>
+<td class="gt_row gt_right" headers="avg_gdp">$153</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="country_name">Aruba</td>
+<td class="gt_row gt_left" headers="country_code">ABW</td>
+<td class="gt_row gt_right" headers="years_with_female_leader">18</td>
+<td class="gt_row gt_right" headers="avg_gdp">$2</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="country_name">Hong Kong</td>
+<td class="gt_row gt_left" headers="country_code">HKG</td>
+<td class="gt_row gt_right" headers="years_with_female_leader">18</td>
+<td class="gt_row gt_right" headers="avg_gdp">$170</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="country_name">Iceland</td>
+<td class="gt_row gt_left" headers="country_code">ISL</td>
+<td class="gt_row gt_right" headers="years_with_female_leader">16</td>
+<td class="gt_row gt_right" headers="avg_gdp">$11</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="country_name">Liberia</td>
+<td class="gt_row gt_left" headers="country_code">LBR</td>
+<td class="gt_row gt_right" headers="years_with_female_leader">15</td>
+<td class="gt_row gt_right" headers="avg_gdp">$2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="country_name">Philippines</td>
+<td class="gt_row gt_left" headers="country_code">PHL</td>
+<td class="gt_row gt_right" headers="years_with_female_leader">15</td>
+<td class="gt_row gt_right" headers="avg_gdp">$137</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="country_name">Chile</td>
+<td class="gt_row gt_left" headers="country_code">CHL</td>
+<td class="gt_row gt_right" headers="years_with_female_leader">12</td>
+<td class="gt_row gt_right" headers="avg_gdp">$120</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>In our first table, we show the countries with the highest number of years of female national leadership along with their average GDP. Denmark and the United Kingdom have the greatest number of years (41), followed by the Netherlands and Ireland, while other countries have fewer years of female leadership. The average GDP values vary widely across these countries, ranging from very low values like for Aruba and Liberia, to much higher values like for the United Kingdom), indicating substantial differences in economic size among them.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell html-fill-item html-fill-container">
+<div id="tbl-gdp-change" class="cell quarto-float quarto-figure quarto-figure-center html-fill-item html-fill-container">
+<figure class="quarto-float quarto-float-tbl figure html-fill-item html-fill-container">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-gdp-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2
+</figcaption>
+<div aria-describedby="tbl-gdp-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<div id="dnfoxpjeee" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;" class="html-fill-item html-fill-container">
+<style>#dnfoxpjeee table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#dnfoxpjeee thead, #dnfoxpjeee tbody, #dnfoxpjeee tfoot, #dnfoxpjeee tr, #dnfoxpjeee td, #dnfoxpjeee th {
+  border-style: none;
+}
+
+#dnfoxpjeee p {
+  margin: 0;
+  padding: 0;
+}
+
+#dnfoxpjeee .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#dnfoxpjeee .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#dnfoxpjeee .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#dnfoxpjeee .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#dnfoxpjeee .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#dnfoxpjeee .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dnfoxpjeee .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#dnfoxpjeee .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#dnfoxpjeee .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#dnfoxpjeee .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#dnfoxpjeee .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#dnfoxpjeee .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#dnfoxpjeee .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#dnfoxpjeee .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#dnfoxpjeee .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#dnfoxpjeee .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#dnfoxpjeee .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#dnfoxpjeee .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#dnfoxpjeee .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dnfoxpjeee .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#dnfoxpjeee .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#dnfoxpjeee .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#dnfoxpjeee .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dnfoxpjeee .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#dnfoxpjeee .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#dnfoxpjeee .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dnfoxpjeee .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dnfoxpjeee .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#dnfoxpjeee .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dnfoxpjeee .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#dnfoxpjeee .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dnfoxpjeee .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#dnfoxpjeee .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dnfoxpjeee .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#dnfoxpjeee .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dnfoxpjeee .gt_left {
+  text-align: left;
+}
+
+#dnfoxpjeee .gt_center {
+  text-align: center;
+}
+
+#dnfoxpjeee .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#dnfoxpjeee .gt_font_normal {
+  font-weight: normal;
+}
+
+#dnfoxpjeee .gt_font_bold {
+  font-weight: bold;
+}
+
+#dnfoxpjeee .gt_font_italic {
+  font-style: italic;
+}
+
+#dnfoxpjeee .gt_super {
+  font-size: 65%;
+}
+
+#dnfoxpjeee .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#dnfoxpjeee .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#dnfoxpjeee .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#dnfoxpjeee .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#dnfoxpjeee .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#dnfoxpjeee .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#dnfoxpjeee .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#dnfoxpjeee .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#dnfoxpjeee div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="7" class="gt_heading gt_title gt_font_normal"><strong>GDP Change Over Time for Countries with the Most Female Leadership</strong></td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="7" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">First and last years of available GDP data by country</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="country_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Country</th>
+<th id="first_year" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">First Year</th>
+<th id="last_year" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Last Year</th>
+<th id="first_gdp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">First GDP</th>
+<th id="last_gdp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Last GDP</th>
+<th id="gdp_change" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">GDP Change</th>
+<th id="percent_change" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Percent Change</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="country_name">Denmark</td>
+<td class="gt_row gt_right" headers="first_year">1980</td>
+<td class="gt_row gt_right" headers="last_year">2020</td>
+<td class="gt_row gt_right" headers="first_gdp">$71</td>
+<td class="gt_row gt_right" headers="last_gdp">$356</td>
+<td class="gt_row gt_right" headers="gdp_change">$285</td>
+<td class="gt_row gt_right" headers="percent_change" style="background-color: #76B7B2">402.2%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="country_name">United Kingdom</td>
+<td class="gt_row gt_right" headers="first_year">1980</td>
+<td class="gt_row gt_right" headers="last_year">2020</td>
+<td class="gt_row gt_right" headers="first_gdp">$605</td>
+<td class="gt_row gt_right" headers="last_gdp">$2,699</td>
+<td class="gt_row gt_right" headers="gdp_change">$2,094</td>
+<td class="gt_row gt_right" headers="percent_change" style="background-color: #76B7B2">346.3%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="country_name">Netherlands</td>
+<td class="gt_row gt_right" headers="first_year">1980</td>
+<td class="gt_row gt_right" headers="last_year">2020</td>
+<td class="gt_row gt_right" headers="first_gdp">$194</td>
+<td class="gt_row gt_right" headers="last_gdp">$932</td>
+<td class="gt_row gt_right" headers="gdp_change">$738</td>
+<td class="gt_row gt_right" headers="percent_change" style="background-color: #76B7B2">380.2%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="country_name">Ireland</td>
+<td class="gt_row gt_right" headers="first_year">1980</td>
+<td class="gt_row gt_right" headers="last_year">2020</td>
+<td class="gt_row gt_right" headers="first_gdp">$21</td>
+<td class="gt_row gt_right" headers="last_gdp">$436</td>
+<td class="gt_row gt_right" headers="gdp_change">$415</td>
+<td class="gt_row gt_right" headers="percent_change" style="background-color: #76B7B2">1,936.0%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="country_name">Aruba</td>
+<td class="gt_row gt_right" headers="first_year">1995</td>
+<td class="gt_row gt_right" headers="last_year">2020</td>
+<td class="gt_row gt_right" headers="first_gdp">$1</td>
+<td class="gt_row gt_right" headers="last_gdp">$3</td>
+<td class="gt_row gt_right" headers="gdp_change">$1</td>
+<td class="gt_row gt_right" headers="percent_change" style="background-color: #76B7B2">93.7%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="country_name">Hong Kong</td>
+<td class="gt_row gt_right" headers="first_year">1980</td>
+<td class="gt_row gt_right" headers="last_year">2020</td>
+<td class="gt_row gt_right" headers="first_gdp">$29</td>
+<td class="gt_row gt_right" headers="last_gdp">$345</td>
+<td class="gt_row gt_right" headers="gdp_change">$316</td>
+<td class="gt_row gt_right" headers="percent_change" style="background-color: #76B7B2">1,095.1%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="country_name">Iceland</td>
+<td class="gt_row gt_right" headers="first_year">1980</td>
+<td class="gt_row gt_right" headers="last_year">2020</td>
+<td class="gt_row gt_right" headers="first_gdp">$3</td>
+<td class="gt_row gt_right" headers="last_gdp">$22</td>
+<td class="gt_row gt_right" headers="gdp_change">$18</td>
+<td class="gt_row gt_right" headers="percent_change" style="background-color: #76B7B2">529.9%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="country_name">Liberia</td>
+<td class="gt_row gt_right" headers="first_year">2000</td>
+<td class="gt_row gt_right" headers="last_year">2020</td>
+<td class="gt_row gt_right" headers="first_gdp">$1</td>
+<td class="gt_row gt_right" headers="last_gdp">$3</td>
+<td class="gt_row gt_right" headers="gdp_change">$2</td>
+<td class="gt_row gt_right" headers="percent_change" style="background-color: #76B7B2">251.9%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="country_name">Philippines</td>
+<td class="gt_row gt_right" headers="first_year">1980</td>
+<td class="gt_row gt_right" headers="last_year">2020</td>
+<td class="gt_row gt_right" headers="first_gdp">$37</td>
+<td class="gt_row gt_right" headers="last_gdp">$362</td>
+<td class="gt_row gt_right" headers="gdp_change">$325</td>
+<td class="gt_row gt_right" headers="percent_change" style="background-color: #76B7B2">875.5%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="country_name">Chile</td>
+<td class="gt_row gt_right" headers="first_year">1980</td>
+<td class="gt_row gt_right" headers="last_year">2020</td>
+<td class="gt_row gt_right" headers="first_gdp">$29</td>
+<td class="gt_row gt_right" headers="last_gdp">$254</td>
+<td class="gt_row gt_right" headers="gdp_change">$225</td>
+<td class="gt_row gt_right" headers="percent_change" style="background-color: #76B7B2">775.1%</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>In this table, we compared GDP at the first and last available years of data for each country, along with the total and percent change over time. All countries show an increase in GDP, though the magnitude of growth varies widely across countries. Some countries, such as Ireland and Hong Kong, have very large percent increases, while others like Aruba and Liberia show more modest growth over their observed time periods.</p>
+</div>
+<div id="tabset-1-3" class="tab-pane html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell html-fill-item html-fill-container">
+<div id="tbl-model" class="cell quarto-float quarto-figure quarto-figure-center html-fill-item html-fill-container">
+<figure class="quarto-float quarto-float-tbl figure html-fill-item html-fill-container">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3
+</figcaption>
+<div aria-describedby="tbl-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<div id="afrybyxmfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;" class="html-fill-item html-fill-container">
+<style>#afrybyxmfi table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#afrybyxmfi thead, #afrybyxmfi tbody, #afrybyxmfi tfoot, #afrybyxmfi tr, #afrybyxmfi td, #afrybyxmfi th {
+  border-style: none;
+}
+
+#afrybyxmfi p {
+  margin: 0;
+  padding: 0;
+}
+
+#afrybyxmfi .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#afrybyxmfi .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#afrybyxmfi .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#afrybyxmfi .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#afrybyxmfi .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#afrybyxmfi .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#afrybyxmfi .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#afrybyxmfi .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#afrybyxmfi .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#afrybyxmfi .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#afrybyxmfi .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#afrybyxmfi .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#afrybyxmfi .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#afrybyxmfi .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#afrybyxmfi .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#afrybyxmfi .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#afrybyxmfi .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#afrybyxmfi .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#afrybyxmfi .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#afrybyxmfi .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#afrybyxmfi .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#afrybyxmfi .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#afrybyxmfi .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#afrybyxmfi .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#afrybyxmfi .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#afrybyxmfi .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#afrybyxmfi .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#afrybyxmfi .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#afrybyxmfi .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#afrybyxmfi .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#afrybyxmfi .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#afrybyxmfi .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#afrybyxmfi .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#afrybyxmfi .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#afrybyxmfi .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#afrybyxmfi .gt_left {
+  text-align: left;
+}
+
+#afrybyxmfi .gt_center {
+  text-align: center;
+}
+
+#afrybyxmfi .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#afrybyxmfi .gt_font_normal {
+  font-weight: normal;
+}
+
+#afrybyxmfi .gt_font_bold {
+  font-weight: bold;
+}
+
+#afrybyxmfi .gt_font_italic {
+  font-style: italic;
+}
+
+#afrybyxmfi .gt_super {
+  font-size: 65%;
+}
+
+#afrybyxmfi .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#afrybyxmfi .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#afrybyxmfi .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#afrybyxmfi .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#afrybyxmfi .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#afrybyxmfi .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#afrybyxmfi .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#afrybyxmfi .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#afrybyxmfi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="5" class="gt_heading gt_title gt_font_normal"><strong>Regression Results</strong></td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Response variable: log(GDP)</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="a::stub" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col"><strong>Coefficient / Value</strong></th>
+<th id="std.error" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col"><strong>Std. Error</strong></th>
+<th id="statistic" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col"><strong>t-value</strong></th>
+<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col"><strong>p-value</strong></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<th colspan="5" id="Coefficients" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Coefficients</th>
+</tr>
+<tr class="gt_row_group_first even">
+<th id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Intercept</th>
+<td class="gt_row gt_right" headers="Coefficients stub_1_1 estimate">2.466</td>
+<td class="gt_row gt_right" headers="Coefficients stub_1_1 std.error">2.270</td>
+<td class="gt_row gt_right" headers="Coefficients stub_1_1 statistic">1.086</td>
+<td class="gt_row gt_right" headers="Coefficients stub_1_1 p.value">0.278</td>
+</tr>
+<tr class="odd">
+<th id="stub_1_2" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Female Leader</th>
+<td class="gt_row gt_right" headers="Coefficients stub_1_2 estimate">1.853</td>
+<td class="gt_row gt_right" headers="Coefficients stub_1_2 std.error">2.273</td>
+<td class="gt_row gt_right" headers="Coefficients stub_1_2 statistic">0.815</td>
+<td class="gt_row gt_right" headers="Coefficients stub_1_2 p.value">0.416</td>
+</tr>
+<tr class="gt_group_heading_row even">
+<th colspan="5" id="Model Fit" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Model Fit</th>
+</tr>
+<tr class="gt_row_group_first odd">
+<th id="stub_1_3" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">R-squared</th>
+<td class="gt_row gt_right" headers="Model Fit stub_1_3 estimate">0.002</td>
+<td class="gt_row gt_right" headers="Model Fit stub_1_3 std.error">NA</td>
+<td class="gt_row gt_right" headers="Model Fit stub_1_3 statistic">NA</td>
+<td class="gt_row gt_right" headers="Model Fit stub_1_3 p.value">NA</td>
+</tr>
+<tr class="even">
+<th id="stub_1_4" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Adjusted R-squared</th>
+<td class="gt_row gt_right" headers="Model Fit stub_1_4 estimate">−0.001</td>
+<td class="gt_row gt_right" headers="Model Fit stub_1_4 std.error">NA</td>
+<td class="gt_row gt_right" headers="Model Fit stub_1_4 statistic">NA</td>
+<td class="gt_row gt_right" headers="Model Fit stub_1_4 p.value">NA</td>
+</tr>
+<tr class="odd">
+<th id="stub_1_5" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">F-statistic</th>
+<td class="gt_row gt_right" headers="Model Fit stub_1_5 estimate">0.664</td>
+<td class="gt_row gt_right" headers="Model Fit stub_1_5 std.error">NA</td>
+<td class="gt_row gt_right" headers="Model Fit stub_1_5 statistic">NA</td>
+<td class="gt_row gt_right" headers="Model Fit stub_1_5 p.value">NA</td>
+</tr>
+<tr class="even">
+<th id="stub_1_6" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Model p-value</th>
+<td class="gt_row gt_right" headers="Model Fit stub_1_6 estimate">0.416</td>
+<td class="gt_row gt_right" headers="Model Fit stub_1_6 std.error">NA</td>
+<td class="gt_row gt_right" headers="Model Fit stub_1_6 statistic">NA</td>
+<td class="gt_row gt_right" headers="Model Fit stub_1_6 p.value">NA</td>
+</tr>
+<tr class="odd">
+<th id="stub_1_7" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Observations</th>
+<td class="gt_row gt_right" headers="Model Fit stub_1_7 estimate">380.000</td>
+<td class="gt_row gt_right" headers="Model Fit stub_1_7 std.error">NA</td>
+<td class="gt_row gt_right" headers="Model Fit stub_1_7 statistic">NA</td>
+<td class="gt_row gt_right" headers="Model Fit stub_1_7 p.value">NA</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="5" class="gt_sourcenote"><strong>Note:</strong> Many countries lacked complete data for female leadership or GDP across all years.</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>The results of the linear regression model on the relationship between female leadership and GDP show that there is no statistically significant association between the two variables. We decided to use GDP logged to reduce skewness that we saw in our original analysis through plotting. The model produced an F-statistic of 0.664 with a p-value of 0.416. Because this p-value is greater than 0.05, we fail to reject the null hypothesis and conclude that there is no evidence that countries with female leaders have different GDP levels compared to those without female leaders.</p>
+<p>Although the estimated coefficient for female leadership is positive, and 5.38 for normal log which suggests higher GDP in countries with female leaders by over 500%, this result is not statistically significant and should be interpreted with caution. The large standard error &amp; R squared indicates that the estimate varies greatly, and the model itself explains very little of the variation in GDP (R² = 0.002). This means that female leadership alone is not a meaningful predictor of economic GDP in this analysis. Additionally, a substantial number of observations were dropped due to missing data in both gender leadership and GDP, which may further limit the reliability and generalizability of these results.</p>
+</div>
+</div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card html-fill-item html-fill-container bslib-card" data-title="GDP Figures" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+GDP Figures
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<div class="panel-tabset html-fill-item html-fill-container">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Figure 1: GDP &amp; Leadership</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Figure 2: GDP Change</a></li></ul>
+<div class="tab-content html-fill-item html-fill-container">
+<div id="tabset-2-1" class="tab-pane active html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<div id="fig-gdp-scatter" class="quarto-float quarto-figure quarto-figure-center html-fill-item html-fill-container" width="768">
+<figure class="quarto-float quarto-float-fig figure html-fill-item html-fill-container">
+<div aria-describedby="fig-gdp-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="html-fill-item html-fill-container">
+<img src="Project2Checkpoint1_files/figure-html/fig-gdp-scatter-1.png" id="fig-gdp-scatter" class="img-fluid figure-img quarto-dashboard-img-contain">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-gdp-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Using a line plot, we wanted to investigate the relationship between the number of years of female national leadership and average GDP for the selected countries. Countries with similar years of female leadership display a wide range of GDP values, and there is no clear linear pattern between the two variables. Additionally, countries with the highest years of female leadership (around 40 years) span both moderate and high GDP values on the log scale.</p>
+</div>
+<div id="tabset-2-2" class="tab-pane html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<div id="fig-gdp-popsicle" class="quarto-float quarto-figure quarto-figure-center html-fill-item html-fill-container" width="768">
+<figure class="quarto-float quarto-float-fig figure html-fill-item html-fill-container">
+<div aria-describedby="fig-gdp-popsicle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="html-fill-item html-fill-container">
+<img src="Project2Checkpoint1_files/figure-html/fig-gdp-popsicle-1.png" id="fig-gdp-popsicle" class="img-fluid figure-img quarto-dashboard-img-contain">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-gdp-popsicle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>To further investigate, we compared GDP in the first and last observed years for each country using a log scale, with each line representing the change over time. All countries show increases in GDP, though the distance between the starting and ending points varies, indicating different magnitudes of growth. Countries like the United Kingdom and the Netherlands start and end at higher GDP levels, while others such as Liberia and Aruba remain at much lower levels throughout the period.</p>
+</div>
+</div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+</div>
+<div id="regime-type-unemployment" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-regime-type-unemployment">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-title="Unemployment Tables" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Unemployment Tables
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<div class="panel-tabset html-fill-item html-fill-container">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Table 3: High Unemployment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Table 4: Trends Over Time</a></li></ul>
+<div class="tab-content html-fill-item html-fill-container">
+<div id="tabset-3-1" class="tab-pane active html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell html-fill-item html-fill-container">
+<div id="tbl-regime-summary" class="cell quarto-float quarto-figure quarto-figure-center html-fill-item html-fill-container">
+<figure class="quarto-float quarto-float-tbl figure html-fill-item html-fill-container">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-regime-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4
+</figcaption>
+<div aria-describedby="tbl-regime-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<div id="jaytwadnzt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;" class="html-fill-item html-fill-container">
+<style>#jaytwadnzt table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#jaytwadnzt thead, #jaytwadnzt tbody, #jaytwadnzt tfoot, #jaytwadnzt tr, #jaytwadnzt td, #jaytwadnzt th {
+  border-style: none;
+}
+
+#jaytwadnzt p {
+  margin: 0;
+  padding: 0;
+}
+
+#jaytwadnzt .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#jaytwadnzt .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#jaytwadnzt .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#jaytwadnzt .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#jaytwadnzt .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jaytwadnzt .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jaytwadnzt .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jaytwadnzt .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#jaytwadnzt .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#jaytwadnzt .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#jaytwadnzt .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#jaytwadnzt .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#jaytwadnzt .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#jaytwadnzt .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#jaytwadnzt .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#jaytwadnzt .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#jaytwadnzt .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#jaytwadnzt .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#jaytwadnzt .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jaytwadnzt .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#jaytwadnzt .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#jaytwadnzt .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#jaytwadnzt .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jaytwadnzt .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#jaytwadnzt .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#jaytwadnzt .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jaytwadnzt .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jaytwadnzt .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#jaytwadnzt .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jaytwadnzt .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#jaytwadnzt .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jaytwadnzt .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jaytwadnzt .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jaytwadnzt .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jaytwadnzt .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jaytwadnzt .gt_left {
+  text-align: left;
+}
+
+#jaytwadnzt .gt_center {
+  text-align: center;
+}
+
+#jaytwadnzt .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#jaytwadnzt .gt_font_normal {
+  font-weight: normal;
+}
+
+#jaytwadnzt .gt_font_bold {
+  font-weight: bold;
+}
+
+#jaytwadnzt .gt_font_italic {
+  font-style: italic;
+}
+
+#jaytwadnzt .gt_super {
+  font-size: 65%;
+}
+
+#jaytwadnzt .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#jaytwadnzt .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#jaytwadnzt .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#jaytwadnzt .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#jaytwadnzt .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#jaytwadnzt .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#jaytwadnzt .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#jaytwadnzt .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#jaytwadnzt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="5" class="gt_heading gt_title gt_font_normal"><strong>High Unemployment by Political Regime Type</strong></td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Share of countries with unemployment rates above 10%</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="regime_category" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Regime Type</th>
+<th id="number_of_countries" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Number of Countries</th>
+<th id="avg_unemployment" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Average Unemployment (%)</th>
+<th id="above_10_percent" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Countries Above 10%</th>
+<th id="percent_above_10" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Percent Above 10%</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="regime_category">NA</td>
+<td class="gt_row gt_right" headers="number_of_countries">1</td>
+<td class="gt_row gt_right" headers="avg_unemployment">11.10</td>
+<td class="gt_row gt_right" headers="above_10_percent">1</td>
+<td class="gt_row gt_right" headers="percent_above_10" style="background-color: #76B7B2">100.0%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="regime_category">Unincorporated territory of the United States with Commonwealth status</td>
+<td class="gt_row gt_right" headers="number_of_countries">41</td>
+<td class="gt_row gt_right" headers="avg_unemployment">14.33</td>
+<td class="gt_row gt_right" headers="above_10_percent">38</td>
+<td class="gt_row gt_right" headers="percent_above_10" style="background-color: #76B7B2">92.7%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="regime_category">Military dictatorship</td>
+<td class="gt_row gt_right" headers="number_of_countries">231</td>
+<td class="gt_row gt_right" headers="avg_unemployment">11.06</td>
+<td class="gt_row gt_right" headers="above_10_percent">122</td>
+<td class="gt_row gt_right" headers="percent_above_10" style="background-color: #76B7B2">52.8%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="regime_category">Mixed democratic</td>
+<td class="gt_row gt_right" headers="number_of_countries">666</td>
+<td class="gt_row gt_right" headers="avg_unemployment">11.10</td>
+<td class="gt_row gt_right" headers="above_10_percent">285</td>
+<td class="gt_row gt_right" headers="percent_above_10" style="background-color: #76B7B2">42.8%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="regime_category">Royal dictatorship</td>
+<td class="gt_row gt_right" headers="number_of_countries">114</td>
+<td class="gt_row gt_right" headers="avg_unemployment">9.51</td>
+<td class="gt_row gt_right" headers="above_10_percent">45</td>
+<td class="gt_row gt_right" headers="percent_above_10" style="background-color: #76B7B2">39.5%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="regime_category">Civilian dictatorship</td>
+<td class="gt_row gt_right" headers="number_of_countries">560</td>
+<td class="gt_row gt_right" headers="avg_unemployment">9.63</td>
+<td class="gt_row gt_right" headers="above_10_percent">205</td>
+<td class="gt_row gt_right" headers="percent_above_10" style="background-color: #76B7B2">36.6%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="regime_category">Parliamentary democracy</td>
+<td class="gt_row gt_right" headers="number_of_countries">1086</td>
+<td class="gt_row gt_right" headers="avg_unemployment">8.40</td>
+<td class="gt_row gt_right" headers="above_10_percent">307</td>
+<td class="gt_row gt_right" headers="percent_above_10" style="background-color: #76B7B2">28.3%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="regime_category">Presidential democracy</td>
+<td class="gt_row gt_right" headers="number_of_countries">814</td>
+<td class="gt_row gt_right" headers="avg_unemployment">7.53</td>
+<td class="gt_row gt_right" headers="above_10_percent">154</td>
+<td class="gt_row gt_right" headers="percent_above_10" style="background-color: #76B7B2">18.9%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="regime_category">Constituent Country of the Netherlands</td>
+<td class="gt_row gt_right" headers="number_of_countries">30</td>
+<td class="gt_row gt_right" headers="avg_unemployment">7.46</td>
+<td class="gt_row gt_right" headers="above_10_percent">3</td>
+<td class="gt_row gt_right" headers="percent_above_10" style="background-color: #76B7B2">10.0%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="regime_category">British Dependent Territory</td>
+<td class="gt_row gt_right" headers="number_of_countries">17</td>
+<td class="gt_row gt_right" headers="avg_unemployment">2.53</td>
+<td class="gt_row gt_right" headers="above_10_percent">0</td>
+<td class="gt_row gt_right" headers="percent_above_10" style="background-color: #76B7B2">0.0%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="regime_category">Crown Colony</td>
+<td class="gt_row gt_right" headers="number_of_countries">1</td>
+<td class="gt_row gt_right" headers="avg_unemployment">3.80</td>
+<td class="gt_row gt_right" headers="above_10_percent">0</td>
+<td class="gt_row gt_right" headers="percent_above_10" style="background-color: #76B7B2">0.0%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="regime_category">Special Administrative Region of China</td>
+<td class="gt_row gt_right" headers="number_of_countries">43</td>
+<td class="gt_row gt_right" headers="avg_unemployment">3.94</td>
+<td class="gt_row gt_right" headers="above_10_percent">0</td>
+<td class="gt_row gt_right" headers="percent_above_10" style="background-color: #76B7B2">0.0%</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Our table summarizes unemployment rates across a wide range of political regime types in 2019, including both averages and the share of countries with unemployment above 10%. There is substantial variation across regimes, with some categories showing higher average unemployment and larger proportions of countries above the 10% mark, while others have lower averages and few or no countries exceeding that level. Overall, the data highlights that unemployment levels and the prevalence of high unemployment differ considerably across political regime types.</p>
+</div>
+<div id="tabset-3-2" class="tab-pane html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell html-fill-item html-fill-container">
+<div id="tbl-regime-trend" class="cell quarto-float quarto-figure quarto-figure-center html-fill-item html-fill-container">
+<figure class="quarto-float quarto-float-tbl figure html-fill-item html-fill-container">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-regime-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5
+</figcaption>
+<div aria-describedby="tbl-regime-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<div id="uarwhbqldr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;" class="html-fill-item html-fill-container">
+<style>#uarwhbqldr table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#uarwhbqldr thead, #uarwhbqldr tbody, #uarwhbqldr tfoot, #uarwhbqldr tr, #uarwhbqldr td, #uarwhbqldr th {
+  border-style: none;
+}
+
+#uarwhbqldr p {
+  margin: 0;
+  padding: 0;
+}
+
+#uarwhbqldr .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#uarwhbqldr .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#uarwhbqldr .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#uarwhbqldr .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#uarwhbqldr .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#uarwhbqldr .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uarwhbqldr .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#uarwhbqldr .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#uarwhbqldr .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#uarwhbqldr .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#uarwhbqldr .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#uarwhbqldr .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#uarwhbqldr .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#uarwhbqldr .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#uarwhbqldr .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#uarwhbqldr .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#uarwhbqldr .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#uarwhbqldr .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#uarwhbqldr .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uarwhbqldr .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#uarwhbqldr .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#uarwhbqldr .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#uarwhbqldr .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uarwhbqldr .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#uarwhbqldr .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#uarwhbqldr .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uarwhbqldr .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uarwhbqldr .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#uarwhbqldr .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uarwhbqldr .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#uarwhbqldr .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uarwhbqldr .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#uarwhbqldr .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uarwhbqldr .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#uarwhbqldr .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uarwhbqldr .gt_left {
+  text-align: left;
+}
+
+#uarwhbqldr .gt_center {
+  text-align: center;
+}
+
+#uarwhbqldr .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#uarwhbqldr .gt_font_normal {
+  font-weight: normal;
+}
+
+#uarwhbqldr .gt_font_bold {
+  font-weight: bold;
+}
+
+#uarwhbqldr .gt_font_italic {
+  font-style: italic;
+}
+
+#uarwhbqldr .gt_super {
+  font-size: 65%;
+}
+
+#uarwhbqldr .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#uarwhbqldr .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#uarwhbqldr .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#uarwhbqldr .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#uarwhbqldr .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#uarwhbqldr .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#uarwhbqldr .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#uarwhbqldr .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#uarwhbqldr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="6" class="gt_heading gt_title gt_font_normal"><strong>Change in Average Unemployment by Regime Type</strong></td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="6" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">First and last available average unemployment rates across all years</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="regime_category" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Regime Type</th>
+<th id="first_year" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">First Year</th>
+<th id="last_year" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Last Year</th>
+<th id="first_avg_unemployment" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Avg Unemployment — First Year (%)</th>
+<th id="last_avg_unemployment" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Avg Unemployment — Last Year (%)</th>
+<th id="change_in_unemployment" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Change (%)</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="regime_category">Military dictatorship</td>
+<td class="gt_row gt_right" headers="first_year">1980</td>
+<td class="gt_row gt_right" headers="last_year">2020</td>
+<td class="gt_row gt_right" headers="first_avg_unemployment">7.97</td>
+<td class="gt_row gt_right" headers="last_avg_unemployment">12.55</td>
+<td class="gt_row gt_right" headers="change_in_unemployment" style="background-color: #76B7B2">4.58</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="regime_category">Civilian dictatorship</td>
+<td class="gt_row gt_right" headers="first_year">1980</td>
+<td class="gt_row gt_right" headers="last_year">2020</td>
+<td class="gt_row gt_right" headers="first_avg_unemployment">8.31</td>
+<td class="gt_row gt_right" headers="last_avg_unemployment">8.88</td>
+<td class="gt_row gt_right" headers="change_in_unemployment" style="background-color: #76B7B2">0.56</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="regime_category">Parliamentary democracy</td>
+<td class="gt_row gt_right" headers="first_year">1980</td>
+<td class="gt_row gt_right" headers="last_year">2020</td>
+<td class="gt_row gt_right" headers="first_avg_unemployment">6.61</td>
+<td class="gt_row gt_right" headers="last_avg_unemployment">8.20</td>
+<td class="gt_row gt_right" headers="change_in_unemployment" style="background-color: #76B7B2">1.59</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="regime_category">Presidential democracy</td>
+<td class="gt_row gt_right" headers="first_year">1980</td>
+<td class="gt_row gt_right" headers="last_year">2020</td>
+<td class="gt_row gt_right" headers="first_avg_unemployment">5.20</td>
+<td class="gt_row gt_right" headers="last_avg_unemployment">9.60</td>
+<td class="gt_row gt_right" headers="change_in_unemployment" style="background-color: #76B7B2">4.40</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="regime_category">Mixed democratic</td>
+<td class="gt_row gt_right" headers="first_year">1980</td>
+<td class="gt_row gt_right" headers="last_year">2020</td>
+<td class="gt_row gt_right" headers="first_avg_unemployment">4.46</td>
+<td class="gt_row gt_right" headers="last_avg_unemployment">8.45</td>
+<td class="gt_row gt_right" headers="change_in_unemployment" style="background-color: #76B7B2">4.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="regime_category">Constituent Country of the Netherlands</td>
+<td class="gt_row gt_right" headers="first_year">1991</td>
+<td class="gt_row gt_right" headers="last_year">2020</td>
+<td class="gt_row gt_right" headers="first_avg_unemployment">6.10</td>
+<td class="gt_row gt_right" headers="last_avg_unemployment">8.60</td>
+<td class="gt_row gt_right" headers="change_in_unemployment" style="background-color: #76B7B2">2.50</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="regime_category">Royal dictatorship</td>
+<td class="gt_row gt_right" headers="first_year">1984</td>
+<td class="gt_row gt_right" headers="last_year">2020</td>
+<td class="gt_row gt_right" headers="first_avg_unemployment">5.40</td>
+<td class="gt_row gt_right" headers="last_avg_unemployment">11.10</td>
+<td class="gt_row gt_right" headers="change_in_unemployment" style="background-color: #76B7B2">5.70</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="regime_category">Crown Colony</td>
+<td class="gt_row gt_right" headers="first_year">1980</td>
+<td class="gt_row gt_right" headers="last_year">1980</td>
+<td class="gt_row gt_right" headers="first_avg_unemployment">3.80</td>
+<td class="gt_row gt_right" headers="last_avg_unemployment">3.80</td>
+<td class="gt_row gt_right" headers="change_in_unemployment" style="background-color: #76B7B2">0.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="regime_category">British Dependent Territory</td>
+<td class="gt_row gt_right" headers="first_year">1981</td>
+<td class="gt_row gt_right" headers="last_year">1997</td>
+<td class="gt_row gt_right" headers="first_avg_unemployment">3.90</td>
+<td class="gt_row gt_right" headers="last_avg_unemployment">2.20</td>
+<td class="gt_row gt_right" headers="change_in_unemployment" style="background-color: #76B7B2">−1.70</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="regime_category">Special Administrative Region of China</td>
+<td class="gt_row gt_right" headers="first_year">1998</td>
+<td class="gt_row gt_right" headers="last_year">2020</td>
+<td class="gt_row gt_right" headers="first_avg_unemployment">4.70</td>
+<td class="gt_row gt_right" headers="last_avg_unemployment">4.20</td>
+<td class="gt_row gt_right" headers="change_in_unemployment" style="background-color: #76B7B2">−0.50</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="regime_category">Unincorporated territory of the United States with Commonwealth status</td>
+<td class="gt_row gt_right" headers="first_year">1980</td>
+<td class="gt_row gt_right" headers="last_year">2020</td>
+<td class="gt_row gt_right" headers="first_avg_unemployment">17.10</td>
+<td class="gt_row gt_right" headers="last_avg_unemployment">8.80</td>
+<td class="gt_row gt_right" headers="change_in_unemployment" style="background-color: #76B7B2">−8.30</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>This table compares average unemployment rates at the first and last observed years for each political regime type and shows the overall change over time. Most regime types experienced increases in average unemployment, though the size of these increases varies, with some categories such as royal dictatorship and military dictatorship showing larger changes. A few regime types show little to no change or even decreases over time, indicating that trends in unemployment are not consistent across all political systems.</p>
+</div>
+</div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card html-fill-item html-fill-container bslib-card" data-title="Unemployment Figures" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Unemployment Figures
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<div class="panel-tabset html-fill-item html-fill-container">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Figure 3: Unemployment by Regime</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Figure 4: Royal Dictatorship Trends</a></li></ul>
+<div class="tab-content html-fill-item html-fill-container">
+<div id="tabset-4-1" class="tab-pane active html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<div id="fig-boxplot" class="quarto-float quarto-figure quarto-figure-center html-fill-item html-fill-container" width="768">
+<figure class="quarto-float quarto-float-fig figure html-fill-item html-fill-container">
+<div aria-describedby="fig-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="html-fill-item html-fill-container">
+<img src="Project2Checkpoint1_files/figure-html/fig-boxplot-1.png" id="fig-boxplot" class="img-fluid figure-img quarto-dashboard-img-contain">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This boxplot shows the distribution of unemployment rates across different political regime types in 2019, including medians, spread, and outliers. Most regime categories have overlapping ranges, though some, such as military and civil dictatorships, display wider variability and higher upper values. Parliamentary and presidential democracies tend to have slightly lower median unemployment rates and less spread compared to several non-democratic regime types.</p>
+</div>
+<div id="tabset-4-2" class="tab-pane html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<div id="fig-royal-ribbon" class="quarto-float quarto-figure quarto-figure-center html-fill-item html-fill-container" width="768">
+<figure class="quarto-float quarto-float-fig figure html-fill-item html-fill-container">
+<div aria-describedby="fig-royal-ribbon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="html-fill-item html-fill-container">
+<img src="Project2Checkpoint1_files/figure-html/fig-royal-ribbon-1.png" id="fig-royal-ribbon" class="img-fluid figure-img quarto-dashboard-img-contain">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-royal-ribbon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This plot focuses on royal dictatorships to further examine the increase in unemployment observed in the previous table (Table 4). The line shows that average unemployment rose sharply in the early 1990s, declined in the 2000s, and then gradually increased again toward 2020. The shaded ribbon indicates that the range of unemployment across countries widens over time, suggesting increasing variability within this regime type.</p>
+</div>
+</div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+</div>
+<div id="conclusions" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-conclusions">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-title="Female Leadership &amp; GDP" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Female Leadership &amp; GDP
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<p>Overall, the analysis of the top countries with the most years of female national leadership shows that GDP increased over time for all of these countries, although the magnitude of growth varied widely. The tables and visualizations for these top countries indicate that similar lengths of female leadership are associated with very different GDP levels and growth patterns, suggesting no clear relationship within this subset. When expanding the analysis to all countries using the regression model, there is also no statistically significant association between female leadership and logged GDP, and the model explains very little of the variation in GDP. These results suggest that while GDP has generally increased over time, there is no consistent evidence from either the top-country analysis or the all countries with available gdp observations that female leadership alone is a strong predictor of economic outcomes.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card html-fill-item html-fill-container bslib-card" data-title="Regime Type &amp; Unemployment" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Regime Type &amp; Unemployment
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<p>Overall, the analysis shows that unemployment rates vary across political regime types, but the differences are not uniform or consistent across all measures. The summary table indicates that some regime types have higher average unemployment and a larger share of countries with high unemployment, while others tend to have lower levels. Over time, most regime types experienced increases in average unemployment, although the amount of change differs, with some regimes showing larger increases and others remaining relatively stable or even decreasing. The boxplot further shows substantial overlap in unemployment distributions across regimes, suggesting that no single regime type consistently has distinctly higher or lower unemployment. A closer look at royal dictatorships highlights that unemployment trends can fluctuate over time and vary widely across countries within the same regime. Overall, these results suggest that while unemployment differs by political regime type, there is no clear or consistent pattern indicating that one type of regime systematically leads to higher or lower unemployment outcomes.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /container fluid -->
+
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (_event) {
+  if (window.bslib.Card) {
+    window.bslib.Card.initializeAllCards();
+  }
+}); 
+</script>
+  
+
+
+
+</body></html>

@@ -1,0 +1,496 @@
+---
+title: "Politics, Gender & Economics"
+format:
+  dashboard:
+    theme: flatly
+    logo: "https://cdn-icons-png.flaticon.com/512/44/44386.png"
+    nav-buttons:
+      - icon: linkedin
+        href: https://linkedin.com
+        aria-label: LinkedIn
+      - icon: instagram
+        href: https://www.instagram.com/phiawoodard/
+        aria-label: Instagram
+      - icon: envelope
+        href: mailto:smwoodar@calpoly.edu
+        aria-label: Email
+    scrolling: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(gt)
+library(broom)
+library(tibble)
+library(scales)
+
+gdp_df           <- read_csv("gdp_df.csv")
+democracy_unemp  <- read_csv("democracy_and_unemploy.csv")
+democracy_gdp    <- read_csv("democracy_and_gdp.csv")
+```
+
+# Data Overview
+
+## Row {height = 30%}
+
+::: {.card title="Project Summary"}
+This dashboard explores two research questions we are interested in learning more about centered around political systems and economic outcomes:
+
+1. **Female Leadership & GDP** — How has Gross Domestic Product (GDP) changed over time for the countries with the most years of female national leadership?
+
+2. **Regime Type & Unemployment** — Does the type of political regime a country operates under affect its unemployment rate?
+
+The analysis draws on three datasets covering 192 sovereign countries from 1950–2020, combining geopolitical data with GDP and unemployment figures.
+
+:::
+
+## Row
+
+::: {.card title="Political System Data"}
+**Bjørnskov–Rode Dataset**
+
+ Our first dataset was created by two economics researchers who were studying different governments and how they change over time. The purpose of this dataset was to be a resource for those interested in studying how different countries and political systems transition through the years. Additionally, the two researchers, Christian Bjørnskov and Martin Rode, when doing their own research, felt that the data available at the time was inadequate.
+
+The dataset includes information on 192 different sovereign countries and 16 other self-governed territories from the years 1950 to 2020 on each of these countries’ regime type, democratic status, leadership, elections, transfers of power, and their colonial history.
+
+This dataset was an expansion on other collections of geopolitical data that the authors took and added more information to. The information included features of government, elections, leadership types, and more. When it came to our analysis for this data, it was incredibly helpful to have all this information because it gave us the ability to have an accurate list of all the sovereign countries and classify them into different categories based on regime, leader, and more. Additionally, it provided us with additional information that gave context to each of these countries.
+
+[View Dataset →](https://www.christianbjoernskov.com/bjoernskovrodedata/)
+:::
+
+::: {.card title="Gross Domestic Product Data"}
+**API Ninjas GDP API**
+
+Our second dataset comes from API Ninjas and is an API with GDP data on all 192 sovereign countries. This data provided us with a wide range of GDP-related variables and information for each country. Some examples of this include GDP per country, GDP per country per capita, nominal GDP, and more. The observational unit was each country and year combination, the API provides current and historical GDP data for countries around the world. API Ninjas didn't explicitly state where they got their data from, so we don't have full transparency on where the data came from, nor why they collected it.
+
+These data are of interest to our first research question because GDP is one of the most used and recognized measures of national economic output. By linking GDP figures to the combined dataset, we are able to track how the economies of countries with more frequent female leadership have changed over time and see whether any  patterns or relationships exist between leadership and economic performance. For our research purposes, we focused on GDP per country in billions of United States dollars. Additionally, when extracting this data from the API to merge it with our geopolitical data, we used both the country name and code.
+
+*Note: API Ninjas does not explicitly disclose its primary data sources.*
+:::
+
+## Row
+
+::: {.card title="Unemployment Data"}
+**API Ninjas Unemployment API**
+
+Our third dataset is from API Ninjas and is an API with unemployment data. This API provides data on the historical, current, and projected future unemployment statistics about every country in the world. This data can be retrieved through programming and can be queried by country name or ISO country code. The response variables in the data includes the country, the year of observation, and the unemployment rate in percentage form. The observational unit was each country and year combination. API Ninjas didn't explicitly state where they got their data from, so we don't have full transparency on where the data came from. The data was collected over multiple years and over a lot of countries to get the most in depth and detailed and informative data possible. 
+
+A country’s unemployment rate is important because it shows how healthy its economy is, with low unemployment usually meaning people are working, earning money, and spending, which helps the economy grow, and high unemployment suggesting economic problems, with fewer jobs available and lower incomes. Different organizations like governments and businesses use this information on unemployment to make decisions about policies, hiring, and investments. By combining this unemployment dataset with our original one, we are able to answer questions regarding the relationship between a country's unemployment rate and their government or socio-economic characteristics, in this case whether the regime of the country affects the unemployment rate.
+
+*Note: API Ninjas does not explicitly disclose its primary data sources.*
+:::
+
+# Female Leadership & GDP
+
+## Row
+
+::: {.card title="GDP Tables"}
+
+::: {.panel-tabset}
+
+## Table 1: Top Countries
+```{r}
+#| label: tbl-top10-female
+top_10_female_leaders_gdp <- democracy_gdp |>
+  filter(!is.na(gdp)) |>
+  group_by(country_name, country_code) |>
+  summarize(
+    years_with_female_leader = sum(female_leader, na.rm = TRUE),
+    avg_gdp = mean(gdp),
+    .groups = "drop"
+  ) |>
+  slice_max(years_with_female_leader, n = 10, with_ties = FALSE)
+
+top_10_female_leaders_gdp |>
+  gt() |>
+  tab_header(
+    title    = md("**Countries with the Most Years of Female National Leadership**"),
+    subtitle = "Based on country-years with available GDP data"
+  ) |>
+  cols_label(
+    country_name             = "Country",
+    country_code             = "Country Code",
+    years_with_female_leader = "Years with Female Leader",
+    avg_gdp                  = "Average GDP"
+  ) |>
+  fmt_currency(avg_gdp, currency = "USD", decimals = 0) |>
+  tab_style(
+    style     = cell_text(weight = "bold"),
+    locations = cells_column_labels()
+  )
+```
+
+In our first table, we show the countries with the highest number of years of female national leadership along with their average GDP. Denmark and the United Kingdom have the greatest number of years (41), followed by the Netherlands and Ireland, while other countries have fewer years of female leadership. The average GDP values vary widely across these countries, ranging from very low values like for Aruba and Liberia, to much higher values like for the United Kingdom), indicating substantial differences in economic size among them.
+
+
+## Table 2: GDP Change
+```{r}
+#| label: tbl-gdp-change
+summarize_country_gdp_change <- function(country) {
+  democracy_gdp |>
+    filter(country_name == country, !is.na(gdp)) |>
+    arrange(year) |>
+    summarize(
+      country_name   = first(country_name),
+      first_year     = first(year),
+      last_year      = last(year),
+      first_gdp      = first(gdp),
+      last_gdp       = last(gdp),
+      gdp_change     = last_gdp - first_gdp,
+      percent_change = gdp_change / first_gdp
+    )
+}
+
+gdp_change_table <- top_10_female_leaders_gdp$country_name |>
+  map_dfr(summarize_country_gdp_change)
+
+gdp_change_table |>
+  gt() |>
+  tab_header(
+    title    = md("**GDP Change Over Time for Countries with the Most Female Leadership**"),
+    subtitle = "First and last years of available GDP data by country"
+  ) |>
+  cols_label(
+    country_name   = "Country",
+    first_year     = "First Year",
+    last_year      = "Last Year",
+    first_gdp      = "First GDP",
+    last_gdp       = "Last GDP",
+    gdp_change     = "GDP Change",
+    percent_change = "Percent Change"
+  ) |>
+  fmt_currency(
+    columns  = c(first_gdp, last_gdp, gdp_change),
+    currency = "USD",
+    decimals = 0
+  ) |>
+  fmt_percent(percent_change, decimals = 1) |>
+  tab_style(
+    style     = cell_text(weight = "bold"),
+    locations = cells_column_labels()
+  ) |>
+  tab_style(
+    style     = cell_fill(color = "#76B7B2"),
+    locations = cells_body(columns = percent_change)
+  )
+```
+
+In this table, we compared GDP at the first and last available years of data for each country, along with the total and percent change over time. All countries show an increase in GDP, though the magnitude of growth varies widely across countries. Some countries, such as Ireland and Hong Kong, have very large percent increases, while others like Aruba and Liberia show more modest growth over their observed time periods.
+
+
+## Regression Table
+```{r}
+#| label: tbl-model
+model_gdp_log <- lm(log(gdp) ~ female_leader, data = democracy_gdp)
+
+tidy_model <- tidy(model_gdp_log) |>
+  mutate(
+    term      = recode(term,
+      "(Intercept)"       = "Intercept",
+      "female_leaderTRUE" = "Female Leader"),
+    estimate  = round(estimate, 3),
+    std.error = round(std.error, 3),
+    statistic = round(statistic, 3),
+    p.value   = round(p.value, 3),
+    section   = "Coefficients"
+  )
+
+g <- glance(model_gdp_log)
+
+model_stats <- tibble(
+  section   = "Model Fit",
+  term      = c("R-squared", "Adjusted R-squared", "F-statistic",
+                "Model p-value", "Observations"),
+  estimate  = c(round(g$r.squared, 3), round(g$adj.r.squared, 3),
+                round(g$statistic, 3), round(g$p.value, 3), g$nobs),
+  std.error = NA,
+  statistic = NA,
+  p.value   = NA
+)
+
+bind_rows(tidy_model, model_stats) |>
+  gt(rowname_col = "term", groupname_col = "section") |>
+  tab_header(
+    title    = md("**Regression Results**"),
+    subtitle = "Response variable: log(GDP)"
+  ) |>
+  cols_label(
+    estimate  = md("**Coefficient / Value**"),
+    std.error = md("**Std. Error**"),
+    statistic = md("**t-value**"),
+    p.value   = md("**p-value**")
+  ) |>
+  fmt_number(
+    columns  = c(estimate, std.error, statistic, p.value),
+    decimals = 3
+  ) |>
+  tab_source_note(
+    source_note = md("**Note:** Many countries lacked complete data for female leadership or GDP across all years.")
+  )
+```
+
+The results of the linear regression model on the relationship between female leadership and GDP show that there is no statistically significant association between the two variables. We decided to use GDP logged to reduce skewness that we saw in our original analysis through plotting. The model produced an F-statistic of 0.664 with a p-value of 0.416. Because this p-value is greater than 0.05, we fail to reject the null hypothesis and conclude that there is no evidence that countries with female leaders have different GDP levels compared to those without female leaders.
+
+Although the estimated coefficient for female leadership is positive, and 5.38 for normal log which suggests higher GDP in countries with female leaders by over 500%, this result is not statistically significant and should be interpreted with caution. The large standard error & R squared indicates that the estimate varies greatly, and the model itself explains very little of the variation in GDP (R² = 0.002). This means that female leadership alone is not a meaningful predictor of economic GDP in this analysis. Additionally, a substantial number of observations were dropped due to missing data in both gender leadership and GDP, which may further limit the reliability and generalizability of these results.
+
+:::
+
+:::
+
+::: {.card title="GDP Figures"}
+
+::: {.panel-tabset}
+
+## Figure 1: GDP & Leadership
+```{r}
+#| label: fig-gdp-scatter
+ggplot(top_10_female_leaders_gdp,
+       aes(x = years_with_female_leader, y = avg_gdp)) +
+  geom_point(color = "#4E79A7", size = 3,
+             position = position_jitter(width = 0.2, seed = 123)) +
+  geom_line(color = "#76B7B2", linewidth = 1,
+            position = position_jitter(width = 0.2, seed = 123)) +
+  scale_y_log10(labels = scales::label_dollar(
+    scale_cut = scales::cut_short_scale())) +
+  labs(
+    title    = "Average GDP and Years of Female Leadership",
+    subtitle = "Each point represents a country with high female leadership representation",
+    x        = "Number of Years with Female National Leadership",
+    y        = "Average GDP (log scale)"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title    = element_text(face = "bold"),
+    plot.subtitle = element_text(size = 10),
+    axis.title    = element_text(face = "bold")
+  )
+```
+
+Using a line plot, we wanted to investigate the relationship between the number of years of female national leadership and average GDP for the selected countries. Countries with similar years of female leadership display a wide range of GDP values, and there is no clear linear pattern between the two variables. Additionally, countries with the highest years of female leadership (around 40 years) span both moderate and high GDP values on the log scale.
+
+## Figure 2: GDP Change
+```{r}
+#| label: fig-gdp-popsicle
+ggplot(gdp_change_table,
+       aes(y = reorder(country_name, last_gdp))) +
+  geom_segment(
+    aes(x = first_gdp, xend = last_gdp, yend = country_name),
+    color = "gray50", linewidth = 1
+  ) +
+  geom_point(aes(x = first_gdp), color = "#4E79A7", size = 3) +
+  geom_point(aes(x = last_gdp),  color = "#76B7B2", size = 3) +
+  scale_x_log10(labels = label_dollar()) +
+  labs(
+    title    = "Change in GDP from First to Last Observation",
+    subtitle = "Countries with the Most Female Leadership",
+    x        = "GDP (log scale)",
+    y        = "Country"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold"))
+```
+
+To further investigate, we compared GDP in the first and last observed years for each country using a log scale, with each line representing the change over time. All countries show increases in GDP, though the distance between the starting and ending points varies, indicating different magnitudes of growth. Countries like the United Kingdom and the Netherlands start and end at higher GDP levels, while others such as Liberia and Aruba remain at much lower levels throughout the period.
+:::
+
+:::
+
+
+# Regime Type & Unemployment
+
+## Row
+
+::: {.card title="Unemployment Tables"}
+
+::: {.panel-tabset}
+
+## Table 3: High Unemployment
+```{r}
+#| label: tbl-regime-summary
+regime_summary_table <- democracy_unemp |>
+  group_by(regime_category) |>
+  summarize(
+    number_of_countries = n(),
+    avg_unemployment    = mean(unemployment_rate, na.rm = TRUE),
+    above_10_percent    = sum(unemployment_rate > 10, na.rm = TRUE),
+    percent_above_10    = above_10_percent / number_of_countries,
+    .groups = "drop"
+  ) |>
+  arrange(desc(percent_above_10))
+
+regime_summary_table |>
+  gt() |>
+  tab_header(
+    title    = md("**High Unemployment by Political Regime Type**"),
+    subtitle = "Share of countries with unemployment rates above 10%"
+  ) |>
+  cols_label(
+    regime_category     = "Regime Type",
+    number_of_countries = "Number of Countries",
+    avg_unemployment    = "Average Unemployment (%)",
+    above_10_percent    = "Countries Above 10%",
+    percent_above_10    = "Percent Above 10%"
+  ) |>
+  fmt_number(avg_unemployment, decimals = 2) |>
+  fmt_percent(percent_above_10, decimals = 1) |>
+  tab_style(
+    style     = cell_text(weight = "bold"),
+    locations = cells_column_labels()
+  ) |>
+  tab_style(
+    style     = cell_fill(color = "#76B7B2"),
+    locations = cells_body(columns = percent_above_10)
+  )
+```
+
+Our table summarizes unemployment rates across a wide range of political regime types in 2019, including both averages and the share of countries with unemployment above 10%. There is substantial variation across regimes, with some categories showing higher average unemployment and larger proportions of countries above the 10% mark, while others have lower averages and few or no countries exceeding that level. Overall, the data highlights that unemployment levels and the prevalence of high unemployment differ considerably across political regime types.
+
+## Table 4: Trends Over Time
+```{r}
+#| label: tbl-regime-trend
+summarize_regime_trend <- function(regime_name) {
+  democracy_unemp |>
+    filter(regime_category == regime_name, !is.na(unemployment_rate)) |>
+    group_by(year) |>
+    summarize(avg_unemployment = mean(unemployment_rate, na.rm = TRUE),
+              .groups = "drop") |>
+    arrange(year) |>
+    summarize(
+      regime_category        = regime_name,
+      first_year             = first(year),
+      last_year              = last(year),
+      first_avg_unemployment = first(avg_unemployment),
+      last_avg_unemployment  = last(avg_unemployment),
+      change_in_unemployment = last_avg_unemployment - first_avg_unemployment
+    )
+}
+
+regime_trend_table <- democracy_unemp |>
+  distinct(regime_category) |>
+  drop_na(regime_category) |>
+  pull(regime_category) |>
+  map_dfr(summarize_regime_trend)
+
+regime_trend_table |>
+  gt() |>
+  tab_header(
+    title    = md("**Change in Average Unemployment by Regime Type**"),
+    subtitle = "First and last available average unemployment rates across all years"
+  ) |>
+  cols_label(
+    regime_category        = "Regime Type",
+    first_year             = "First Year",
+    last_year              = "Last Year",
+    first_avg_unemployment = "Avg Unemployment — First Year (%)",
+    last_avg_unemployment  = "Avg Unemployment — Last Year (%)",
+    change_in_unemployment = "Change (%)"
+  ) |>
+  fmt_number(
+    columns  = c(first_avg_unemployment, last_avg_unemployment,
+                 change_in_unemployment),
+    decimals = 2
+  ) |>
+  tab_style(
+    style     = cell_text(weight = "bold"),
+    locations = cells_column_labels()
+  ) |>
+  tab_style(
+    style     = cell_fill(color = "#76B7B2"),
+    locations = cells_body(columns = change_in_unemployment)
+  )
+```
+
+This table compares average unemployment rates at the first and last observed years for each political regime type and shows the overall change over time. Most regime types experienced increases in average unemployment, though the size of these increases varies, with some categories such as royal dictatorship and military dictatorship showing larger changes. A few regime types show little to no change or even decreases over time, indicating that trends in unemployment are not consistent across all political systems.
+
+:::
+
+:::
+
+::: {.card title="Unemployment Figures"}
+
+::: {.panel-tabset}
+
+## Figure 3: Unemployment by Regime
+```{r}
+#| label: fig-boxplot
+unemploy_data <- democracy_unemp |>
+  inner_join(gdp_df, by = c("country_code", "year"),
+             relationship = "many-to-many") |>
+  filter(year == 2019, !is.na(regime_category_index))
+
+ggplot(unemploy_data,
+       aes(x = regime_category, y = unemployment_rate)) +
+  geom_boxplot(fill = "#76B7B2", alpha = 0.7) +
+  labs(
+    title    = "Unemployment Rates Across Political Regime Types (2019)",
+    subtitle = "Distribution of unemployment rates by regime category",
+    x        = "Regime Category",
+    y        = "Unemployment Rate (%)"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title    = element_text(face = "bold"),
+    plot.subtitle = element_text(size = 10),
+    axis.title    = element_text(face = "bold"),
+    axis.text.x   = element_text(angle = 45, hjust = 1)
+  )
+```
+
+This boxplot shows the distribution of unemployment rates across different political regime types in 2019, including medians, spread, and outliers. Most regime categories have overlapping ranges, though some, such as military and civil dictatorships, display wider variability and higher upper values. Parliamentary and presidential democracies tend to have slightly lower median unemployment rates and less spread compared to several non-democratic regime types.
+
+## Figure 4: Royal Dictatorship Trends
+```{r}
+#| label: fig-royal-ribbon
+one_regime_data <- democracy_unemp |>
+  filter(regime_category == "Royal dictatorship",
+         !is.na(unemployment_rate)) |>
+  group_by(year) |>
+  summarize(
+    avg_unemployment = mean(unemployment_rate, na.rm = TRUE),
+    min_unemployment = min(unemployment_rate, na.rm = TRUE),
+    max_unemployment = max(unemployment_rate, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+ggplot(one_regime_data, aes(x = year, y = avg_unemployment)) +
+  geom_ribbon(aes(ymin = min_unemployment, ymax = max_unemployment),
+              fill = "#76B7B2", alpha = 0.3) +
+  geom_line(color = "#4E79A7", linewidth = 1) +
+  labs(
+    title    = "Unemployment Trends in Royal Dictatorships Over Time",
+    subtitle = "Average unemployment with range across countries",
+    x        = "Year",
+    y        = "Unemployment Rate (%)"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title    = element_text(face = "bold"),
+    plot.subtitle = element_text(size = 10),
+    axis.title    = element_text(face = "bold")
+  )
+```
+
+This plot focuses on royal dictatorships to further examine the increase in unemployment observed in the previous table (Table 4). The line shows that average unemployment rose sharply in the early 1990s, declined in the 2000s, and then gradually increased again toward 2020. The shaded ribbon indicates that the range of unemployment across countries widens over time, suggesting increasing variability within this regime type.
+:::
+
+:::
+
+# Conclusions
+
+## Row
+
+::: {.card title="Female Leadership & GDP"}
+Overall, the analysis of the top countries with the most years of female national leadership shows that GDP increased over time for all of these countries, although the magnitude of growth varied widely. The tables and visualizations for these top countries indicate that similar lengths of female leadership are associated with very different GDP levels and growth patterns, suggesting no clear relationship within this subset. When expanding the analysis to all countries using the regression model, there is also no statistically significant association between female leadership and logged GDP, and the model explains very little of the variation in GDP. These results suggest that while GDP has generally increased over time, there is no consistent evidence from either the top-country analysis or the all countries with available gdp observations that female leadership alone is a strong predictor of economic outcomes.
+:::
+
+::: {.card title="Regime Type & Unemployment"}
+Overall, the analysis shows that unemployment rates vary across political regime types, but the differences are not uniform or consistent across all measures. The summary table indicates that some regime types have higher average unemployment and a larger share of countries with high unemployment, while others tend to have lower levels. Over time, most regime types experienced increases in average unemployment, although the amount of change differs, with some regimes showing larger increases and others remaining relatively stable or even decreasing. The boxplot further shows substantial overlap in unemployment distributions across regimes, suggesting that no single regime type consistently has distinctly higher or lower unemployment. A closer look at royal dictatorships highlights that unemployment trends can fluctuate over time and vary widely across countries within the same regime. Overall, these results suggest that while unemployment differs by political regime type, there is no clear or consistent pattern indicating that one type of regime systematically leads to higher or lower unemployment outcomes.
+:::
+
+
