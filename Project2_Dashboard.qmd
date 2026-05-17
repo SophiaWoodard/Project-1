@@ -1,0 +1,406 @@
+---
+title: "Politics, Gender & Economics"
+format:
+  dashboard:
+    theme: flatly
+    logo: "https://cdn-icons-png.flaticon.com/512/44/44386.png"
+    nav-buttons:
+      - icon: linkedin
+        href: https://linkedin.com
+        aria-label: LinkedIn
+      - icon: instagram
+        href: https://www.instagram.com/phiawoodard/
+        aria-label: Instagram
+      - icon: envelope
+        href: mailto:smwoodar@calpoly.edu
+        aria-label: Email
+    scrolling: true
+server: shiny
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(plotly)
+library(gt)
+library(broom)
+library(tibble)
+library(scales)
+library(leaflet)
+library(sf)
+library(dplyr)
+library(shiny)
+
+gdp_df           <- read_csv("gdp_df.csv")
+democracy_unemp  <- read_csv("democracy_and_unemploy.csv")
+democracy_gdp    <- read_csv("democracy_and_gdp.csv")
+
+countries       <- st_read("countries.geo.json", quiet = TRUE)
+gdp_latest      <- democracy_gdp |>
+  filter(year >= 1980, year <= 2000, !is.na(gdp))
+map_data        <- countries |>
+  left_join(gdp_latest, by = c("id" = "country_code"))
+map_data$log_gdp   <- log10(map_data$gdp)
+available_years    <- sort(unique(map_data$year[!is.na(map_data$year)]))
+```
+
+# The Data Behind the Analysis
+
+## Row {height = 30%}
+
+::: {.card title="Introduction"}
+Political systems and their leaders shape the way countries are governed. Overtime, countries have had many leadership & regime changes that have influenced the economic outcomes of their country. In hopes to explore that influence, we attempted to collect accurate & exhaustive data on many countries over time to analyze. This dashboard explores our research question we are interested in learning more about centered around political systems and economic outcomes:
+
+1. **Female Leadership & GDP** — How has Gross Domestic Product (GDP) changed over time for the countries with the most years of female national leadership?
+
+The analysis draws on two datasets covering 192 sovereign countries from 1950–2020, combining geopolitical data with GDP figures.
+
+:::
+
+## Row
+
+::: {.card title="Tracking Regimes and Leadership"}
+**Bjørnskov–Rode Dataset**
+
+ Our first dataset was created by two economics researchers who were studying different governments and how they change over time. The purpose of this dataset was to be a resource for those interested in studying how different countries and political systems transition through the years. Additionally, the two researchers, Christian Bjørnskov and Martin Rode, when doing their own research, felt that the data available at the time was inadequate.
+
+The dataset includes information on 192 different sovereign countries and 16 other self-governed territories from the years 1950 to 2020 on each of these countries' regime type, democratic status, leadership, elections, transfers of power, and their colonial history.
+
+This dataset was an expansion on other collections of geopolitical data that the authors took and added more information to. The information included features of government, elections, leadership types, and more. When it came to our analysis for this data, it was incredibly helpful to have all this information because it gave us the ability to have an accurate list of all the sovereign countries and classify them into different categories based on regime, leader, and more. Additionally, it provided us with additional information that gave context to each of these countries.
+
+[View Dataset →](https://www.christianbjoernskov.com/bjoernskovrodedata/)
+:::
+
+::: {.card title="Measuring Economic Performance"}
+**API Ninjas GDP API**
+
+Our second dataset comes from API Ninjas and is an API with GDP data on all 192 sovereign countries. This data provided us with a wide range of GDP-related variables and information for each country. Some examples of this include GDP per country, GDP per country per capita, nominal GDP, and more. The observational unit was each country and year combination, the API provides current and historical GDP data for countries around the world. API Ninjas didn't explicitly state where they got their data from, so we don't have full transparency on where the data came from, nor why they collected it.
+
+These data are of interest to our first research question because GDP is one of the most used and recognized measures of national economic output. By linking GDP figures to the combined dataset, we are able to track how the economies of countries with more frequent female leadership have changed over time and see whether any  patterns or relationships exist between leadership and economic performance. For our research purposes, we focused on GDP per country in billions of United States dollars. Additionally, when extracting this data from the API to merge it with our geopolitical data, we used both the country name and code.
+
+*Note: API Ninjas does not explicitly disclose its primary data sources.*
+:::
+
+
+# Female Leadership & GDP
+
+## Research Question {height = 5%}
+<div style="text-align: center; font-size: 1.2rem;">
+
+How has **Gross Domestic Product (GDP)** changed for countries with the most years of **female national leadership** over time?
+
+</div>
+
+## Row {height = 50%}
+
+::: {.card title="GDP Tables"}
+
+::: {.panel-tabset}
+
+## Table 1: Top Countries With Most Female Leaders
+```{r}
+#| label: tbl-top10-female
+top_10_female_leaders_gdp <- democracy_gdp |>
+  filter(!is.na(gdp)) |>
+  group_by(country_name, country_code) |>
+  summarize(
+    years_with_female_leader = sum(female_leader, na.rm = TRUE),
+    avg_gdp = mean(gdp),
+    .groups = "drop"
+  ) |>
+  slice_max(years_with_female_leader, n = 10, with_ties = FALSE)
+
+top_10_female_leaders_gdp |>
+  gt() |>
+  tab_header(
+    title    = md("**Countries with the Most Years of Female National Leadership**"),
+    subtitle = "Based on country-years with available GDP data"
+  ) |>
+  cols_label(
+    country_name             = "Country",
+    country_code             = "Country Code",
+    years_with_female_leader = "Years with Female Leader",
+    avg_gdp                  = "Average GDP"
+  ) |>
+  fmt_currency(avg_gdp, currency = "USD", decimals = 0) |>
+  tab_style(
+    style     = cell_text(weight = "bold"),
+    locations = cells_column_labels()
+  )
+```
+We can see in our table that Denmark and the United Kingdom have the greatest number of years (41), followed by the Netherlands and Ireland, while other countries have fewer years of female leadership. **The average GDP values vary widely across these countries, ranging from very low values like for Aruba and Liberia, to much higher values like for the United Kingdom), indicating substantial differences in economic size among them.**
+
+
+## Table 2: GDP Change By Country With Most Female Leaders
+```{r}
+#| label: tbl-gdp-change
+summarize_country_gdp_change <- function(country) {
+  democracy_gdp |>
+    filter(country_name == country, !is.na(gdp)) |>
+    arrange(year) |>
+    summarize(
+      country_name   = first(country_name),
+      first_year     = first(year),
+      last_year      = last(year),
+      first_gdp      = first(gdp),
+      last_gdp       = last(gdp),
+      gdp_change     = last_gdp - first_gdp,
+      percent_change = gdp_change / first_gdp
+    )
+}
+
+gdp_change_table <- top_10_female_leaders_gdp$country_name |>
+  map_dfr(summarize_country_gdp_change)
+
+gdp_change_table |>
+  gt() |>
+  tab_header(
+    title    = md("**GDP Change Over Time for Countries with the Most Female Leadership**"),
+    subtitle = "First and last years of available GDP data by country"
+  ) |>
+  cols_label(
+    country_name   = "Country",
+    first_year     = "First Year",
+    last_year      = "Last Year",
+    first_gdp      = "First GDP",
+    last_gdp       = "Last GDP",
+    gdp_change     = "GDP Change",
+    percent_change = "Percent Change"
+  ) |>
+  fmt_currency(
+    columns  = c(first_gdp, last_gdp, gdp_change),
+    currency = "USD",
+    decimals = 0
+  ) |>
+  fmt_percent(percent_change, decimals = 1) |>
+  tab_style(
+    style     = cell_text(weight = "bold"),
+    locations = cells_column_labels()
+  ) |>
+  tab_style(
+    style     = cell_fill(color = "#76B7B2"),
+    locations = cells_body(columns = percent_change)
+  )
+```
+
+We found that all countries show an increase in GDP, though the magnitude of growth varies widely across countries. Some countries, such as Ireland and Hong Kong, have very large percent increases, while others like Aruba and Liberia show more modest growth over their observed time periods.
+
+
+:::
+
+:::
+
+::: {.card title="GDP Figures"}
+
+::: {.panel-tabset}
+
+## Figure 1: Logged GDP & Leadership Plot
+```{r}
+#| label: fig-gdp-scatter
+ggplot(top_10_female_leaders_gdp,
+       aes(x = years_with_female_leader, y = avg_gdp)) +
+  geom_point(color = "#4E79A7", size = 3,
+             position = position_jitter(width = 0.2, seed = 123)) +
+  geom_line(color = "#76B7B2", linewidth = 1,
+            position = position_jitter(width = 0.2, seed = 123)) +
+  scale_y_log10(labels = scales::label_dollar(
+    scale_cut = scales::cut_short_scale())) +
+  labs(
+    title    = "Average GDP and Years of Female Leadership",
+    subtitle = "Each point represents a country with high female leadership representation",
+    x        = "Number of Years with Female National Leadership",
+    y        = "Average GDP (log scale)"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title    = element_text(face = "bold"),
+    plot.subtitle = element_text(size = 10),
+    axis.title    = element_text(face = "bold")
+  )
+```
+
+Using a line plot, we wanted to investigate the relationship between the number of years of female national leadership and average GDP for the selected countries. Visually, **we can see countries with similar years of female leadership display a wide range of GDP values, and there is no clear linear pattern between the two variables.** Additionally, countries with the highest years of female leadership (around 40 years) span both **moderate and high GDP values on the log scale**.
+
+## Figure 2: Logged GDP Change By Country Spread
+```{r}
+#| label: fig-gdp-popsicle
+ggplot(gdp_change_table,
+       aes(y = reorder(country_name, last_gdp))) +
+  geom_segment(
+    aes(x = first_gdp, xend = last_gdp, yend = country_name),
+    color = "gray50", linewidth = 1
+  ) +
+  geom_point(aes(x = first_gdp), color = "#4E79A7", size = 3) +
+  geom_point(aes(x = last_gdp),  color = "#76B7B2", size = 3) +
+  scale_x_log10(labels = label_dollar()) +
+  labs(
+    title    = "Change in GDP from First to Last Observation",
+    subtitle = "Countries with the Most Female Leadership",
+    x        = "GDP (log scale)",
+    y        = "Country"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold"))
+```
+
+To further investigate, we compared GDP in the first and last observed years for each country using a log scale, with each line representing the change over time. This plot shows that **all countries show increases in GDP, though the distance between the starting and ending points varies, indicating different magnitudes of growth**. Countries like the United Kingdom and the Netherlands start and end at higher GDP levels, while others such as Liberia and Aruba remain at much lower levels throughout the period.
+:::
+
+:::
+
+## World Map {height= 20%}
+
+### Regression Table
+::: {.card title="Linear Regression for GDP & Years of Female Leadership"}
+```{r}
+#| label: tbl-model
+model_gdp_log <- lm(log(gdp) ~ female_leader, data = democracy_gdp)
+
+tidy_model <- tidy(model_gdp_log) |>
+  mutate(
+    term      = recode(term,
+      "(Intercept)"       = "Intercept",
+      "female_leaderTRUE" = "Female Leader"),
+    estimate  = round(estimate, 3),
+    std.error = round(std.error, 3),
+    statistic = round(statistic, 3),
+    p.value   = round(p.value, 3),
+    section   = "Coefficients"
+  )
+
+g <- glance(model_gdp_log)
+
+model_stats <- tibble(
+  section   = "Model Fit",
+  term      = c("R-squared", "Adjusted R-squared", "F-statistic",
+                "Model p-value", "Observations"),
+  estimate  = c(round(g$r.squared, 3), round(g$adj.r.squared, 3),
+                round(g$statistic, 3), round(g$p.value, 3), g$nobs),
+  std.error = NA,
+  statistic = NA,
+  p.value   = NA
+)
+
+bind_rows(tidy_model, model_stats) |>
+  gt(rowname_col = "term", groupname_col = "section") |>
+  tab_header(
+    title    = md("**Regression Results**"),
+    subtitle = "Response variable: log(GDP)"
+  ) |>
+  cols_label(
+    estimate  = md("**Coefficient / Value**"),
+    std.error = md("**Std. Error**"),
+    statistic = md("**t-value**"),
+    p.value   = md("**p-value**")
+  ) |>
+  fmt_number(
+    columns  = c(estimate, std.error, statistic, p.value),
+    decimals = 3
+  ) |>
+  tab_source_note(
+    source_note = md("**Note:** Many countries lacked complete data for female leadership or GDP across all years.")
+  )
+```
+
+**The results of the linear regression model on the relationship between female leadership and GDP show that there is no statistically significant association between the two variables.** We decided to use GDP logged to reduce skewness that we saw in our original analysis through plotting. The model produced an F-statistic of 0.664 with a p-value of 0.416. Because this p-value is greater than 0.05, **we fail to reject the null hypothesis and conclude that there is no evidence that countries with female leaders have different GDP levels compared to those without female leaders.**
+
+Although the estimated coefficient for female leadership is positive, and 5.38 for normal log which suggests higher GDP in countries with female leaders by over 500%, this result is not statistically significant and should be interpreted with caution. The large standard error & R squared indicates that the estimate varies greatly, and **the model itself explains very little of the variation in GDP (R² = 0.002).** This means that **female leadership alone is not a meaningful predictor of economic GDP in this analysis**. Additionally, a substantial number of observations were dropped due to missing data in both gender leadership and GDP, which may further limit the reliability and generalizability of these results.
+
+:::
+
+### Column
+::: {.card title="Logged GDP Per Country On World Map"}
+```{r}
+selectInput(
+  inputId  = "map_year",
+  label    = "Choose a year:",
+  choices  = available_years,
+  selected = max(available_years, na.rm = TRUE)
+)
+
+leafletOutput("gdp_map", height = 500)
+```
+
+```{r}
+#| context: server
+output$gdp_map <- renderLeaflet({
+
+  joined_gdp <- map_data |>
+    filter(year == input$map_year)
+
+  color <- colorNumeric(
+    palette  = "Blues",
+    domain   = joined_gdp$log_gdp,
+    na.color = "#cccccc"
+  )
+
+  leaflet(joined_gdp) |>
+    addTiles() |>
+    addPolygons(
+      fillColor   = ~color(log_gdp),
+      fillOpacity = 0.85,
+      color       = "white",
+      weight      = 0.5,
+      popup       = ~paste0(
+        "<strong>", country_name, "</strong><br>",
+        "Year: ", year, "<br>",
+        "GDP: $", format(gdp, big.mark = ",")
+      )
+    ) |>
+    addLegend(
+      pal     = color,
+      values  = ~log_gdp,
+      title   = "GDP (log scale)",
+      opacity = 0.85
+    ) |>
+    setView(lng = 0, lat = 20, zoom = 2)
+
+})
+```
+:::
+
+
+## Row {height= 20%}
+<div style="text-align: center; font-size: 1.2rem;">
+
+**Conclusion: What We Found**
+
+</div>
+Overall, the analysis of the top countries with the most years of female national leadership shows that **GDP increased over time for all of these countries, although the magnitude of growth varied widely**. The tables and visualizations for these top countries indicate that similar lengths of female leadership are associated with very different GDP levels and growth patterns, **suggesting no clear relationship within this subset**. When expanding the analysis to all countries using the regression model, there is also **no statistically significant association between female leadership and logged GDP, and the model explains very little of the variation in GDP**. These results suggest that while GDP has generally increased over time, there is **no consistent evidence from either the top-country analysis or the all countries with available gdp observations that female leadership alone is a strong predictor of economic outcomes**.
+
+
+
+
+# Hong Kong Case Study
+
+## Row {height = 25%}
+
+::: {.card title="Exploring GDP For Hong Kong"}
+```{r}
+hk_data <- democracy_gdp |>
+  filter(country_name == "Hong Kong", !is.na(gdp)) |>
+  arrange(year)
+
+p <- ggplot(hk_data, aes(x = year, y = gdp)) +
+  geom_vline(xintercept = 1997, color = "#4E79A7", linetype = "dashed") +
+  geom_line(color = "#76B7B2", linewidth = 1) +
+  geom_point(color = "#76B7B2", size = 2) +
+  annotate("text", x = 1997, y = max(hk_data$gdp, na.rm = TRUE),
+           label = "July 1, 1997\nHandover to China",
+           hjust = -0.05, size = 3, color = "#4E79A7") +
+  labs(title = "GDP in Hong Kong Over Time",
+       x = "Year", y = "GDP (Billions USD)") +
+  theme_minimal()
+
+ggplotly(p)
+```
+:::
+
+::: {.card title="Why Did We Pick Hong Kong?"}
+We chose to look into Hong Kong because it had an unusually high GDP growth compared to most of the other countries we had data on. We also know that Hong Kong went through regime changes during this time period, being under British rule and then becoming a special administrative region afterwards, so we wanted to look into Hong Kong's GDP growth over time to see whether regime changes could be a factor in this large growth in GDP.
+:::
